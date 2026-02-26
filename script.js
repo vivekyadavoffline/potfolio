@@ -16,6 +16,9 @@ const supportedThemes = ['dark', 'neon', 'light'];
 const soundKey = 'portfolio-sound';
 let soundEnabled = true;
 let audioContext = null;
+let lastHoverSoundAt = 0;
+let lastTypeSoundAt = 0;
+let backToTopWasVisible = false;
 
 const getAudioContext = () => {
   if (!audioContext) {
@@ -54,21 +57,70 @@ const playTone = ({ frequency = 440, duration = 0.05, type = 'sine', volume = 0.
   oscillator.stop(now + duration + 0.015);
 };
 
+const playChord = (notes, options = {}) => {
+  notes.forEach((frequency, index) => {
+    const offset = (options.staggerMs ?? 0) * index;
+    window.setTimeout(() => {
+      playTone({
+        frequency,
+        duration: options.duration ?? 0.05,
+        type: options.type ?? 'sine',
+        volume: options.volume ?? 0.02,
+      });
+    }, offset);
+  });
+};
+
 const playUiSound = (name) => {
   if (name === 'tap') {
     playTone({ frequency: 580, duration: 0.045, type: 'triangle', volume: 0.025, endFrequency: 520 });
+    playTone({ frequency: 860, duration: 0.032, type: 'sine', volume: 0.012, endFrequency: 780 });
     return;
   }
   if (name === 'toggle') {
     playTone({ frequency: 420, duration: 0.06, type: 'sine', volume: 0.03, endFrequency: 760 });
+    playTone({ frequency: 300, duration: 0.04, type: 'triangle', volume: 0.014, endFrequency: 340 });
+    return;
+  }
+  if (name === 'menu-open') {
+    playChord([390, 520, 660], { duration: 0.05, type: 'triangle', volume: 0.018, staggerMs: 12 });
+    return;
+  }
+  if (name === 'menu-close') {
+    playChord([660, 520, 390], { duration: 0.045, type: 'triangle', volume: 0.016, staggerMs: 10 });
     return;
   }
   if (name === 'theme') {
-    playTone({ frequency: 660, duration: 0.05, type: 'triangle', volume: 0.025, endFrequency: 920 });
+    playChord([540, 690, 840], { duration: 0.05, type: 'sine', volume: 0.02, staggerMs: 8 });
+    playTone({ frequency: 930, duration: 0.055, type: 'triangle', volume: 0.015, endFrequency: 1090 });
+    return;
+  }
+  if (name === 'hover') {
+    const now = performance.now();
+    if (now - lastHoverSoundAt < 90) return;
+    lastHoverSoundAt = now;
+    playTone({ frequency: 740, duration: 0.024, type: 'triangle', volume: 0.01, endFrequency: 780 });
+    return;
+  }
+  if (name === 'reveal') {
+    playTone({ frequency: 320, duration: 0.05, type: 'sine', volume: 0.014, endFrequency: 420 });
+    playTone({ frequency: 520, duration: 0.036, type: 'triangle', volume: 0.009, endFrequency: 640 });
+    return;
+  }
+  if (name === 'type') {
+    const now = performance.now();
+    if (now - lastTypeSoundAt < 80) return;
+    lastTypeSoundAt = now;
+    playTone({ frequency: 520, duration: 0.018, type: 'square', volume: 0.006, endFrequency: 500 });
+    return;
+  }
+  if (name === 'scroll-cue') {
+    playChord([480, 620], { duration: 0.03, type: 'sine', volume: 0.012, staggerMs: 14 });
     return;
   }
   if (name === 'top') {
     playTone({ frequency: 350, duration: 0.07, type: 'sine', volume: 0.028, endFrequency: 760 });
+    playTone({ frequency: 760, duration: 0.05, type: 'triangle', volume: 0.014, endFrequency: 980 });
   }
 };
 
@@ -139,7 +191,7 @@ if (soundToggleBtn) {
   });
 }
 
-if (prefersReducedMotion) {
+if (prefersReducedMotion || typeof window.IntersectionObserver !== 'function') {
   revealElements.forEach((element) => element.classList.add('is-visible'));
 } else {
   const revealObserver = new IntersectionObserver(
@@ -147,6 +199,7 @@ if (prefersReducedMotion) {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
         entry.target.classList.add('is-visible');
+        playUiSound('reveal');
         observer.unobserve(entry.target);
       });
     },
@@ -192,14 +245,25 @@ navLinks.forEach((link) => {
       document.body.classList.remove('menu-open');
     }
   });
+
+  link.addEventListener('mouseenter', () => {
+    playUiSound('hover');
+  });
+
+  link.addEventListener('focus', () => {
+    playUiSound('hover');
+  });
 });
 
 if (menuToggle && navMenu) {
-  const closeMobileMenu = () => {
+  const closeMobileMenu = (withSound = false) => {
     navMenu.classList.remove('is-open');
     menuToggle.classList.remove('is-open');
     menuToggle.setAttribute('aria-expanded', 'false');
     document.body.classList.remove('menu-open');
+    if (withSound) {
+      playUiSound('menu-close');
+    }
   };
 
   menuToggle.addEventListener('click', () => {
@@ -207,33 +271,34 @@ if (menuToggle && navMenu) {
     menuToggle.classList.toggle('is-open', isOpen);
     menuToggle.setAttribute('aria-expanded', String(isOpen));
     document.body.classList.toggle('menu-open', isOpen);
-    playUiSound('toggle');
+    playUiSound(isOpen ? 'menu-open' : 'menu-close');
   });
 
   document.addEventListener('click', (event) => {
-    const clickedInsideHeader = event.target.closest('#top');
+    const target = event.target instanceof Element ? event.target : null;
+    const clickedInsideHeader = target ? target.closest('#top') : null;
     if (!clickedInsideHeader && navMenu.classList.contains('is-open')) {
-      closeMobileMenu();
+      closeMobileMenu(true);
     }
   });
 
   if (menuScrim) {
     menuScrim.addEventListener('click', () => {
       if (navMenu.classList.contains('is-open')) {
-        closeMobileMenu();
+        closeMobileMenu(true);
       }
     });
   }
 
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && navMenu.classList.contains('is-open')) {
-      closeMobileMenu();
+      closeMobileMenu(true);
     }
   });
 
   window.addEventListener('resize', () => {
     if (window.innerWidth > 980 && navMenu.classList.contains('is-open')) {
-      closeMobileMenu();
+      closeMobileMenu(false);
     } else if (window.innerWidth > 980) {
       document.body.classList.remove('menu-open');
     }
@@ -250,7 +315,12 @@ const updateScrollUi = () => {
   }
 
   if (backToTopBtn) {
-    backToTopBtn.classList.toggle('is-visible', scrollTop > 420);
+    const isVisible = scrollTop > 420;
+    backToTopBtn.classList.toggle('is-visible', isVisible);
+    if (isVisible && !backToTopWasVisible) {
+      playUiSound('scroll-cue');
+    }
+    backToTopWasVisible = isVisible;
   }
 };
 
@@ -312,7 +382,28 @@ document.querySelectorAll('.btn, .social-link').forEach((node) => {
   node.addEventListener('click', () => {
     playUiSound('tap');
   });
+  node.addEventListener('mouseenter', () => {
+    playUiSound('hover');
+  });
+  node.addEventListener('focus', () => {
+    playUiSound('hover');
+  });
 });
+
+themeButtons.forEach((button) => {
+  button.addEventListener('mouseenter', () => {
+    playUiSound('hover');
+  });
+  button.addEventListener('focus', () => {
+    playUiSound('hover');
+  });
+});
+
+if (soundToggleBtn) {
+  soundToggleBtn.addEventListener('mouseenter', () => {
+    playUiSound('hover');
+  });
+}
 
 const rolePhrases = [
   'Software Developer',
@@ -336,6 +427,9 @@ if (dynamicRole && !prefersReducedMotion) {
     }
 
     dynamicRole.textContent = currentText.slice(0, charIndex);
+    if (!deleting && charIndex % 3 === 0) {
+      playUiSound('type');
+    }
 
     let delay = deleting ? 45 : 75;
 
