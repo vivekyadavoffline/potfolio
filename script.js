@@ -10,6 +10,15 @@ const dynamicRole = document.querySelector('#dynamic-role');
 const themeButtons = document.querySelectorAll('[data-theme-btn]');
 const soundToggleBtn = document.querySelector('#sound-toggle');
 const skillsTrack = document.querySelector('#skills-strip .skills-track');
+const socialTriggers = document.querySelectorAll('.social-trigger');
+const socialModal = document.querySelector('#social-modal');
+const socialModalScrim = document.querySelector('#social-modal-scrim');
+const socialModalClose = document.querySelector('#social-modal-close');
+const socialModalDismiss = document.querySelector('#social-modal-dismiss');
+const socialModalTitle = document.querySelector('#social-modal-title');
+const socialModalHandle = document.querySelector('#social-modal-handle');
+const socialModalDescription = document.querySelector('#social-modal-description');
+const socialModalAction = document.querySelector('#social-modal-action');
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const themeKey = 'portfolio-theme';
 const supportedThemes = ['dark', 'neon', 'light', 'liquid'];
@@ -372,6 +381,46 @@ if (backToTopBtn) {
   backToTopBtn.addEventListener('click', () => {
     playUiSound('top');
     window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+  });
+}
+
+if (socialModal && socialModalTitle && socialModalHandle && socialModalDescription && socialModalAction) {
+  const closeSocialModal = () => {
+    socialModal.classList.remove('is-open');
+    socialModal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('modal-open');
+  };
+
+  const openSocialModal = (trigger) => {
+    socialModalTitle.textContent = trigger.dataset.socialTitle || 'Profile';
+    socialModalHandle.textContent = trigger.dataset.socialHandle || '';
+    socialModalDescription.textContent = trigger.dataset.socialDescription || '';
+    socialModalAction.href = trigger.dataset.socialUrl || '#';
+    socialModalAction.textContent = trigger.dataset.socialAction || 'Open';
+    socialModal.classList.add('is-open');
+    socialModal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('modal-open');
+  };
+
+  socialTriggers.forEach((trigger) => {
+    trigger.addEventListener('click', () => {
+      openSocialModal(trigger);
+      playUiSound('tap');
+    });
+  });
+
+  [socialModalClose, socialModalDismiss, socialModalScrim].forEach((node) => {
+    if (!node) return;
+    node.addEventListener('click', () => {
+      closeSocialModal();
+      playUiSound('menu-close');
+    });
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && socialModal.classList.contains('is-open')) {
+      closeSocialModal();
+    }
   });
 }
 
