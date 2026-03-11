@@ -22,9 +22,12 @@
   <header class="topbar wrapper" id="top">
     <p class="brand">Vivek Yadav</p>
     <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="site-nav">
-      <span></span>
-      <span></span>
-      <span></span>
+      <span class="menu-toggle__text">Menu</span>
+      <span class="menu-toggle__icon" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
     </button>
     <nav class="nav-links" id="site-nav">
       <div class="nav-controls">
@@ -53,54 +56,71 @@
   <main id="main-content">
     <section id="home" class="hero wrapper reveal">
       <div class="hero-text hero-intro">
-        <p class="section-kicker">Portfolio</p>
-        <p class="availability-pill">Open to internships and collaborative projects</p>
-        <p class="greeting">Hello.</p>
-        <p class="intro-line"><span class="intro-accent"></span>I'm Vivek</p>
-        <h1>
-          <span class="name-line">Vivek Yadav</span>
-          <span class="role-line" id="dynamic-role">Software Developer</span>
-        </h1>
-        <p class="hero-meta">New Delhi, India</p>
-        <p class="hero-summary">
-          I build polished front-end interfaces, strengthen problem-solving with C++, and keep expanding into backend fundamentals through project-based learning.
-        </p>
+        <div class="hero-layout">
+          <div class="hero-copy">
+            <p class="section-kicker">Portfolio</p>
+            <p class="availability-pill">Open to internships and collaborative projects</p>
+            <p class="greeting">Hello.</p>
+            <p class="intro-line"><span class="intro-accent"></span>I'm Vivek</p>
+            <h1>
+              <span class="name-line">Vivek Yadav</span>
+              <span class="role-line" id="dynamic-role">Software Developer</span>
+            </h1>
+            <p class="hero-meta">New Delhi, India</p>
+            <p class="hero-summary">
+              I build polished front-end interfaces, strengthen problem-solving with C++, and keep expanding into backend fundamentals through project-based learning.
+            </p>
+          </div>
 
-        <div class="hero-badges">
-          <span>Project-Oriented Learner</span>
-          <span>Frontend + Backend + SQL Basics</span>
-          <span>Problem Solver</span>
+          <div class="hero-media" id="hero-profile" aria-hidden="false">
+            <div class="profile-stage">
+              <img
+                class="hero-portrait"
+                src="profile.png"
+                alt="Vivek Yadav"
+              />
+            </div>
+          </div>
         </div>
 
-        <div class="hero-stats" aria-label="Quick profile highlights">
-          <article class="hero-stat panel">
-            <strong>8.57</strong>
-            <span>Current CGPA</span>
-          </article>
-          <article class="hero-stat panel">
-            <strong>2+</strong>
-            <span>Deployed UI projects</span>
-          </article>
-          <article class="hero-stat panel">
-            <strong>7x</strong>
-            <span>District chess champion</span>
-          </article>
+        <div class="hero-dashboard panel">
+          <div class="hero-badges">
+            <span>Project-Oriented Learner</span>
+            <span>Frontend + Backend + SQL Basics</span>
+            <span>Problem Solver</span>
+          </div>
+
+          <div class="hero-stats" aria-label="Quick profile highlights">
+            <article class="hero-stat">
+              <strong>8.57</strong>
+              <span>Current CGPA</span>
+            </article>
+            <article class="hero-stat">
+              <strong>2+</strong>
+              <span>Deployed UI projects</span>
+            </article>
+            <article class="hero-stat">
+              <strong>7x</strong>
+              <span>District chess champion</span>
+            </article>
+          </div>
+
+          <div class="hero-actions">
+            <div class="cta-primary-block">
+              <a class="btn btn-primary btn-wide" href="https://vivekyadavoffline.github.io/spotify-clone/" target="_blank" rel="noopener noreferrer">View Live Project</a>
+              <p class="cta-caption">Featured build: Spotify clone with responsive UI, playback controls, and DOM-driven interactions.</p>
+            </div>
+            <div class="cta-stack">
+              <a class="btn btn-outline" href="https://github.com/vivekyadavoffline" target="_blank" rel="noopener noreferrer">GitHub Profile</a>
+              <a class="btn btn-outline btn-soft" href="#profiles">Social Accounts</a>
+            </div>
+          </div>
         </div>
 
-        <div class="cta-row">
-          <a class="btn btn-primary" href="https://vivekyadavoffline.github.io/spotify-clone/" target="_blank" rel="noopener noreferrer">Live Project</a>
-          <a class="btn btn-outline" href="https://github.com/vivekyadavoffline" target="_blank" rel="noopener noreferrer">GitHub Profile</a>
-          <a class="btn btn-outline" href="#profiles">Contact Me</a>
-        </div>
-      </div>
-
-      <div class="hero-media reveal">
-        <div class="profile-stage">
-          <img
-            class="hero-portrait"
-            src="profile.png"
-            alt="Vivek Yadav"
-          />
+        <div class="hero-linkbar" aria-label="Quick links">
+          <a class="hero-link" href="mailto:vivekbhiwadi704@gmail.com">Email</a>
+          <a class="hero-link" href="#projects">Projects</a>
+          <a class="hero-link" href="#skills">Skills</a>
         </div>
       </div>
     </section>
@@ -124,8 +144,10 @@
     </section>
 
     <section id="about" class="info wrapper reveal">
-      <p class="section-kicker">Contact</p>
-      <h2>Basic Details</h2>
+      <div class="section-head">
+        <p class="section-kicker">Contact</p>
+        <h2>Basic Details</h2>
+      </div>
       <div class="info-grid">
         <article class="info-card panel">
           <h3>Personal Information</h3>
@@ -154,8 +176,10 @@
     </section>
 
     <section id="education" class="info wrapper reveal">
-      <p class="section-kicker">Academics</p>
-      <h2>Education</h2>
+      <div class="section-head">
+        <p class="section-kicker">Academics</p>
+        <h2>Education</h2>
+      </div>
       <div class="info-grid">
         <article class="info-card panel">
           <h3>B.Tech - Computer Science Engineering</h3>
@@ -187,8 +211,10 @@
     </section>
 
     <section id="skills" class="info wrapper reveal">
-      <p class="section-kicker">Stack</p>
-      <h2>Technical Skills</h2>
+      <div class="section-head">
+        <p class="section-kicker">Stack</p>
+        <h2>Technical Skills</h2>
+      </div>
       <div class="info-grid">
         <article class="info-card panel">
           <h3>Programming</h3>
@@ -221,8 +247,10 @@
     </section>
 
     <section id="projects" class="roadmap wrapper reveal">
-      <p class="section-kicker">Work</p>
-      <h2>Projects</h2>
+      <div class="section-head">
+        <p class="section-kicker">Work</p>
+        <h2>Projects</h2>
+      </div>
       <div class="timeline">
         <article class="timeline-item panel">
           <span class="timeline-dot"></span>
@@ -257,8 +285,10 @@
     </section>
 
     <section id="experience" class="info wrapper reveal">
-      <p class="section-kicker">Exposure</p>
-      <h2>Experience</h2>
+      <div class="section-head">
+        <p class="section-kicker">Exposure</p>
+        <h2>Experience</h2>
+      </div>
       <div class="info-grid">
         <article class="info-card panel">
           <h3>Industrial Visit - Microsoft India Development Center (IDC)</h3>
@@ -271,8 +301,10 @@
     </section>
 
     <section id="achievements" class="info wrapper reveal">
-      <p class="section-kicker">Highlights</p>
-      <h2>Achievements</h2>
+      <div class="section-head">
+        <p class="section-kicker">Highlights</p>
+        <h2>Achievements</h2>
+      </div>
       <div class="info-grid">
         <article class="info-card panel"><p>7-Time Rewari District Chess Champion</p></article>
         <article class="info-card panel"><p>State-Level Chess Participant</p></article>
@@ -281,8 +313,10 @@
     </section>
 
     <section id="certifications" class="info wrapper reveal">
-      <p class="section-kicker">Credentials</p>
-      <h2>Certifications</h2>
+      <div class="section-head">
+        <p class="section-kicker">Credentials</p>
+        <h2>Certifications</h2>
+      </div>
       <div class="goal-list">
         <article class="goal-item panel"><p>Generative AI (Google)</p></article>
         <article class="goal-item panel"><p>Introduction to Cybersecurity</p></article>
@@ -292,9 +326,11 @@
     </section>
 
     <section id="profiles" class="info wrapper goals-section reveal">
-      <p class="section-kicker">Online</p>
-      <h2>Online Profiles</h2>
-      <p class="section-summary">The fastest way to reach me is by email or WhatsApp. GitHub shows the projects I am actively building.</p>
+      <div class="section-head">
+        <p class="section-kicker">Online</p>
+        <h2>Online Profiles</h2>
+        <p class="section-summary">The fastest way to reach me is by email or WhatsApp. GitHub shows the projects I am actively building.</p>
+      </div>
       <div class="goal-list">
         <article class="goal-item panel">
           <a class="social-link github" href="https://github.com/vivekyadavoffline" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
@@ -361,8 +397,14 @@
   </main>
 
   <footer class="site-footer wrapper">
-    <p>Built by Vivek Yadav with HTML, CSS, and JavaScript.</p>
-    <a href="#top">Back to top</a>
+    <div class="footer-copy">
+      <p>Built by Vivek Yadav with HTML, CSS, and JavaScript.</p>
+      <p class="footer-note">Portfolio, projects, and social presence in one place.</p>
+    </div>
+    <div class="footer-meta">
+      <span class="footer-mark">© Vivek Yadav</span>
+      <a href="#top">Back to top</a>
+    </div>
   </footer>
 
   <button class="back-to-top" id="back-to-top" aria-label="Back to top">Top</button>
