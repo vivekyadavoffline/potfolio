@@ -20,6 +20,15 @@ let lastHoverSoundAt = 0;
 let lastTypeSoundAt = 0;
 let backToTopWasVisible = false;
 
+const updateMenuScrim = (isOpen) => {
+  if (!menuScrim) return;
+  menuScrim.setAttribute('aria-hidden', String(!isOpen));
+};
+
+const updateColorScheme = (theme) => {
+  document.documentElement.style.colorScheme = theme === 'light' || theme === 'liquid' ? 'light' : 'dark';
+};
+
 const getAudioContext = () => {
   if (!audioContext) {
     const AudioCtx = window.AudioContext || window.webkitAudioContext;
@@ -127,6 +136,7 @@ const playUiSound = (name) => {
 const applyTheme = (theme, persist = true) => {
   if (!supportedThemes.includes(theme)) return;
   document.documentElement.dataset.theme = theme;
+  updateColorScheme(theme);
   themeButtons.forEach((button) => {
     button.classList.toggle('is-active', button.dataset.themeBtn === theme);
   });
@@ -213,29 +223,40 @@ const setActiveNav = (id) => {
   navLinks.forEach((link) => {
     const isMatch = link.getAttribute('href') === `#${id}`;
     link.classList.toggle('active', isMatch);
+    if (isMatch) {
+      link.setAttribute('aria-current', 'page');
+    } else {
+      link.removeAttribute('aria-current');
+    }
   });
 };
 
-const sectionObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        setActiveNav(entry.target.id);
-      }
-    });
-  },
-  {
-    rootMargin: '-35% 0px -55% 0px',
-    threshold: 0.01,
-  }
-);
+if (typeof window.IntersectionObserver === 'function') {
+  const sectionObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveNav(entry.target.id);
+        }
+      });
+    },
+    {
+      rootMargin: '-35% 0px -55% 0px',
+      threshold: 0.01,
+    }
+  );
 
-sectionElements.forEach((section) => sectionObserver.observe(section));
+  sectionElements.forEach((section) => sectionObserver.observe(section));
+} else if (sectionElements.length) {
+  setActiveNav(sectionElements[0].id);
+}
 
 navLinks.forEach((link) => {
   link.addEventListener('click', () => {
-    navLinks.forEach((item) => item.classList.remove('active'));
-    link.classList.add('active');
+    const targetId = link.getAttribute('href')?.replace('#', '');
+    if (targetId) {
+      setActiveNav(targetId);
+    }
     playUiSound('tap');
 
     if (navMenu && menuToggle && navMenu.classList.contains('is-open')) {
@@ -243,6 +264,7 @@ navLinks.forEach((link) => {
       menuToggle.classList.remove('is-open');
       menuToggle.setAttribute('aria-expanded', 'false');
       document.body.classList.remove('menu-open');
+      updateMenuScrim(false);
     }
   });
 
@@ -261,6 +283,7 @@ if (menuToggle && navMenu) {
     menuToggle.classList.remove('is-open');
     menuToggle.setAttribute('aria-expanded', 'false');
     document.body.classList.remove('menu-open');
+    updateMenuScrim(false);
     if (withSound) {
       playUiSound('menu-close');
     }
@@ -271,6 +294,7 @@ if (menuToggle && navMenu) {
     menuToggle.classList.toggle('is-open', isOpen);
     menuToggle.setAttribute('aria-expanded', String(isOpen));
     document.body.classList.toggle('menu-open', isOpen);
+     updateMenuScrim(isOpen);
     playUiSound(isOpen ? 'menu-open' : 'menu-close');
   });
 
@@ -301,6 +325,7 @@ if (menuToggle && navMenu) {
       closeMobileMenu(false);
     } else if (window.innerWidth > 980) {
       document.body.classList.remove('menu-open');
+      updateMenuScrim(false);
     }
   });
 }
@@ -326,6 +351,22 @@ const updateScrollUi = () => {
 
 window.addEventListener('scroll', updateScrollUi, { passive: true });
 updateScrollUi();
+updateMenuScrim(false);
+
+const syncNavFromHash = () => {
+  const currentHash = window.location.hash.replace('#', '');
+  if (!currentHash) {
+    setActiveNav('home');
+    return;
+  }
+  const matchingSection = Array.from(sectionElements).find((section) => section.id === currentHash);
+  if (matchingSection) {
+    setActiveNav(matchingSection.id);
+  }
+};
+
+syncNavFromHash();
+window.addEventListener('hashchange', syncNavFromHash);
 
 if (backToTopBtn) {
   backToTopBtn.addEventListener('click', () => {
@@ -447,4 +488,6 @@ if (dynamicRole && !prefersReducedMotion) {
 
   dynamicRole.textContent = '';
   window.setTimeout(typeTick, 450);
+} else if (dynamicRole) {
+  dynamicRole.textContent = rolePhrases[0];
 }

@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
   <div class="scroll-progress" id="scroll-progress"></div>
   <div class="page-glow"></div>
   <div class="menu-scrim" id="menu-scrim" aria-hidden="true"></div>
@@ -31,25 +32,29 @@
           <button class="theme-btn is-active" data-theme-btn="dark" aria-label="Dark theme">Dark</button>
           <button class="theme-btn" data-theme-btn="neon" aria-label="Neon theme">Neon</button>
           <button class="theme-btn" data-theme-btn="light" aria-label="Light theme">Light</button>
+          <button class="theme-btn" data-theme-btn="liquid" aria-label="Liquid theme">Liquid</button>
         </div>
         <button class="sound-toggle" id="sound-toggle" aria-label="Toggle sound effects" aria-pressed="true">Sound: On</button>
       </div>
-      <a class="nav-link active" href="#home">Home</a>
-      <a class="nav-link" href="#about">Details</a>
-      <a class="nav-link" href="#education">Education</a>
-      <a class="nav-link" href="#skills">Skills</a>
-      <a class="nav-link" href="#projects">Projects</a>
-      <a class="nav-link" href="#experience">Experience</a>
-      <a class="nav-link" href="#achievements">Achievements</a>
-      <a class="nav-link" href="#certifications">Certifications</a>
-      <a class="nav-link" href="#profiles">Profiles</a>
+      <div class="nav-tabs">
+        <a class="nav-link active" href="#home">Home</a>
+        <a class="nav-link" href="#about">Details</a>
+        <a class="nav-link" href="#education">Education</a>
+        <a class="nav-link" href="#skills">Skills</a>
+        <a class="nav-link" href="#projects">Projects</a>
+        <a class="nav-link" href="#experience">Experience</a>
+        <a class="nav-link" href="#achievements">Achievements</a>
+        <a class="nav-link" href="#certifications">Certifications</a>
+        <a class="nav-link" href="#profiles">Profiles</a>
+      </div>
     </nav>
   </header>
 
-  <main>
+  <main id="main-content">
     <section id="home" class="hero wrapper reveal">
       <div class="hero-text hero-intro">
         <p class="section-kicker">Portfolio</p>
+        <p class="availability-pill">Open to internships and collaborative projects</p>
         <p class="greeting">Hello.</p>
         <p class="intro-line"><span class="intro-accent"></span>I'm Vivek</p>
         <h1>
@@ -57,16 +62,35 @@
           <span class="role-line" id="dynamic-role">Software Developer</span>
         </h1>
         <p class="hero-meta">New Delhi, India</p>
+        <p class="hero-summary">
+          I build polished front-end interfaces, strengthen problem-solving with C++, and keep expanding into backend fundamentals through project-based learning.
+        </p>
 
         <div class="hero-badges">
           <span>Project-Oriented Learner</span>
-          <span>Frontend + Backend Basics</span>
+          <span>Frontend + Backend + SQL Basics</span>
           <span>Problem Solver</span>
+        </div>
+
+        <div class="hero-stats" aria-label="Quick profile highlights">
+          <article class="hero-stat panel">
+            <strong>8.57</strong>
+            <span>Current CGPA</span>
+          </article>
+          <article class="hero-stat panel">
+            <strong>2+</strong>
+            <span>Deployed UI projects</span>
+          </article>
+          <article class="hero-stat panel">
+            <strong>7x</strong>
+            <span>District chess champion</span>
+          </article>
         </div>
 
         <div class="cta-row">
           <a class="btn btn-primary" href="https://vivekyadavoffline.github.io/spotify-clone/" target="_blank" rel="noopener noreferrer">Live Project</a>
           <a class="btn btn-outline" href="https://github.com/vivekyadavoffline" target="_blank" rel="noopener noreferrer">GitHub Profile</a>
+          <a class="btn btn-outline" href="#profiles">Contact Me</a>
         </div>
       </div>
 
@@ -89,6 +113,7 @@
           <span>CSS3</span>
           <span>JavaScript</span>
           <span>Express.js</span>
+          <span>MySQL</span>
           <span>MongoDB</span>
           <span>Postman</span>
           <span>OOP</span>
@@ -106,9 +131,9 @@
           <h3>Personal Information</h3>
           <ul class="plain-list">
             <li><strong>Name:</strong> Vivek Yadav</li>
-            <li><strong>Date of Birth:</strong> 27 November </li>
-            <li><strong>Address:</strong> Bhiwadi, Rajasthan, Delhi, India</li>
+            <li><strong>Location:</strong> Bhiwadi, Rajasthan, India</li>
             <li><strong>Email:</strong> vivekbhiwadi704@gmail.com</li>
+            <li><strong>Focus:</strong> Frontend development, JavaScript, Express.js, MySQL, MongoDB</li>
           </ul>
         </article>
 
@@ -179,7 +204,7 @@
         </article>
         <article class="info-card panel">
           <h3>Tools</h3>
-          <p>Git, GitHub, VS Code, Postman</p>
+          <p>Git, GitHub, VS Code, Postman, MySQL</p>
         </article>
         <article class="info-card panel">
           <h3>Currently Learning</h3>
@@ -188,6 +213,7 @@
             <li>API integration</li>
             <li>Node.js basics</li>
             <li>Express.js</li>
+            <li>MySQL</li>
             <li>MongoDB</li>
           </ul>
         </article>
@@ -203,6 +229,7 @@
           <div>
             <h3>Spotify Modified Clone</h3>
             <ul class="plain-list">
+              <li><strong>Stack:</strong> HTML, CSS, JavaScript</li>
               <li>Responsive music player UI</li>
               <li>Play/pause logic</li>
               <li>Progress tracking</li>
@@ -218,6 +245,7 @@
           <div>
             <h3>Netflix Clone</h3>
             <ul class="plain-list">
+              <li><strong>Stack:</strong> HTML, CSS</li>
               <li>Responsive streaming platform UI</li>
               <li>Structured layout using Flexbox and Grid</li>
               <li>Hover effects and smooth transitions</li>
@@ -266,6 +294,7 @@
     <section id="profiles" class="info wrapper goals-section reveal">
       <p class="section-kicker">Online</p>
       <h2>Online Profiles</h2>
+      <p class="section-summary">The fastest way to reach me is by email or WhatsApp. GitHub shows the projects I am actively building.</p>
       <div class="goal-list">
         <article class="goal-item panel">
           <a class="social-link github" href="https://github.com/vivekyadavoffline" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
@@ -330,6 +359,11 @@
       </div>
     </section>
   </main>
+
+  <footer class="site-footer wrapper">
+    <p>Built by Vivek Yadav with HTML, CSS, and JavaScript.</p>
+    <a href="#top">Back to top</a>
+  </footer>
 
   <button class="back-to-top" id="back-to-top" aria-label="Back to top">Top</button>
   <script src="script.js"></script>
