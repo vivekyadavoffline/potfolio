@@ -10,7 +10,7 @@ const dynamicRole = document.querySelector('#dynamic-role');
 const themeButtons = document.querySelectorAll('[data-theme-btn]');
 const soundToggleBtn = document.querySelector('#sound-toggle');
 const skillsTrack = document.querySelector('#skills-strip .skills-track');
-const socialTriggers = document.querySelectorAll('.social-trigger');
+const modalTriggers = document.querySelectorAll('.social-trigger, .modal-trigger');
 const socialModal = document.querySelector('#social-modal');
 const socialModalScrim = document.querySelector('#social-modal-scrim');
 const socialModalClose = document.querySelector('#social-modal-close');
@@ -392,21 +392,37 @@ if (socialModal && socialModalTitle && socialModalHandle && socialModalDescripti
   };
 
   const openSocialModal = (trigger) => {
+    const actionUrl = trigger.dataset.socialUrl || '#';
+    const isInPageLink = actionUrl.startsWith('#');
+
     socialModalTitle.textContent = trigger.dataset.socialTitle || 'Profile';
     socialModalHandle.textContent = trigger.dataset.socialHandle || '';
     socialModalDescription.textContent = trigger.dataset.socialDescription || '';
-    socialModalAction.href = trigger.dataset.socialUrl || '#';
+    socialModalAction.href = actionUrl;
     socialModalAction.textContent = trigger.dataset.socialAction || 'Open';
+    if (isInPageLink) {
+      socialModalAction.removeAttribute('target');
+      socialModalAction.removeAttribute('rel');
+    } else {
+      socialModalAction.setAttribute('target', '_blank');
+      socialModalAction.setAttribute('rel', 'noopener noreferrer');
+    }
     socialModal.classList.add('is-open');
     socialModal.setAttribute('aria-hidden', 'false');
     document.body.classList.add('modal-open');
   };
 
-  socialTriggers.forEach((trigger) => {
+  modalTriggers.forEach((trigger) => {
     trigger.addEventListener('click', () => {
       openSocialModal(trigger);
       playUiSound('tap');
     });
+  });
+
+  socialModalAction.addEventListener('click', () => {
+    if (socialModalAction.getAttribute('href')?.startsWith('#')) {
+      closeSocialModal();
+    }
   });
 
   [socialModalClose, socialModalDismiss, socialModalScrim].forEach((node) => {
