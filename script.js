@@ -1,13 +1,39 @@
 const revealElements = document.querySelectorAll('.reveal');
 const sectionElements = document.querySelectorAll('main section[id]');
 const navLinks = document.querySelectorAll('.nav-link');
+const navTabs = document.querySelector('.nav-tabs');
+const navSlider = document.querySelector('#nav-slider');
 const menuToggle = document.querySelector('#menu-toggle');
 const navMenu = document.querySelector('#site-nav');
 const menuScrim = document.querySelector('#menu-scrim');
 const backToTopBtn = document.querySelector('#back-to-top');
 const progressBar = document.querySelector('#scroll-progress');
 const dynamicRole = document.querySelector('#dynamic-role');
+const availabilityPill = document.querySelector('#availability-pill');
+const heroGreeting = document.querySelector('#hero-greeting');
+const heroIntroLine = document.querySelector('#hero-intro-line');
+const heroMeta = document.querySelector('#hero-meta');
+const heroSummary = document.querySelector('#hero-summary');
+const heroBadge1 = document.querySelector('#hero-badge-1');
+const heroBadge2 = document.querySelector('#hero-badge-2');
+const heroBadge3 = document.querySelector('#hero-badge-3');
+const heroStatValue1 = document.querySelector('#hero-stat-value-1');
+const heroStatLabel1 = document.querySelector('#hero-stat-label-1');
+const heroStatValue2 = document.querySelector('#hero-stat-value-2');
+const heroStatLabel2 = document.querySelector('#hero-stat-label-2');
+const heroStatValue3 = document.querySelector('#hero-stat-value-3');
+const heroStatLabel3 = document.querySelector('#hero-stat-label-3');
+const ctaCaption = document.querySelector('#cta-caption');
 const themeButtons = document.querySelectorAll('[data-theme-btn]');
+const audienceGate = document.querySelector('#audience-gate');
+const heroProfile = document.querySelector('#hero-profile');
+const agePicker = document.querySelector('#age-picker');
+const ageChips = document.querySelectorAll('[data-age-range]');
+const audienceChoiceButtons = document.querySelectorAll('[data-audience-choice]');
+const audiencePickerTrigger = document.querySelector('#audience-picker-trigger');
+const audiencePill = document.querySelector('#audience-pill');
+const audienceGateNote = document.querySelector('#audience-gate-note');
+const femalePortraitToggle = document.querySelector('#female-portrait-toggle');
 const soundToggleBtn = document.querySelector('#sound-toggle');
 const skillsTrack = document.querySelector('#skills-strip .skills-track');
 const modalTriggers = document.querySelectorAll('.social-trigger, .modal-trigger');
@@ -21,6 +47,8 @@ const socialModalDescription = document.querySelector('#social-modal-description
 const socialModalAction = document.querySelector('#social-modal-action');
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const themeKey = 'portfolio-theme';
+const audienceKey = 'portfolio-audience';
+const ageKey = 'portfolio-age-range';
 const supportedThemes = ['dark', 'neon', 'light', 'liquid'];
 const soundKey = 'portfolio-sound';
 let soundEnabled = true;
@@ -28,14 +56,259 @@ let audioContext = null;
 let lastHoverSoundAt = 0;
 let lastTypeSoundAt = 0;
 let backToTopWasVisible = false;
+let roleTypingTimer = null;
+const defaultRolePhrases = [
+  'Software Developer',
+  'Aspiring Full Stack Web Developer',
+  'Frontend-Focused Problem Solver',
+  'Building Real-World Web Projects',
+];
+let activeRolePhrases = [...defaultRolePhrases];
+
+const getAgeTone = (ageRange) => {
+  if (ageRange === '13-17' || ageRange === '18-24') return 'youth';
+  if (ageRange === '35-44' || ageRange === '45+') return 'professional';
+  return 'balanced';
+};
+
+const getRolePhrasesForAge = (ageRange) => {
+  switch (ageRange) {
+    case '13-17':
+      return [
+        'Creative Web Learner',
+        'Building Projects While Learning',
+        'Exploring Frontend Skills',
+        'Growing Through Practice',
+      ];
+    case '18-24':
+      return [
+        'Software Developer',
+        'Aspiring Full Stack Web Developer',
+        'Internship-Focused Builder',
+        'Building Career-Ready Projects',
+      ];
+    case '35-44':
+      return [
+        'Software Developer',
+        'Structured Web Portfolio',
+        'Project-Based Technical Growth',
+        'Reliable Frontend Execution',
+      ];
+    case '45+':
+      return [
+        'Software Developer',
+        'Professional Portfolio Overview',
+        'Clear Technical Direction',
+        'Steady Development Journey',
+      ];
+    default:
+      return [...defaultRolePhrases];
+  }
+};
+const ageExperienceMap = {
+  '13-17': {
+    pill: 'Built for discovery, learning, and fast inspiration',
+    greeting: 'Hey buddy, welcome!',
+    intro: "I'm Vivek",
+    meta: 'New Delhi, India | Early-stage builder',
+    summary: 'I focus on beginner-friendly projects, engaging front-end visuals, and hands-on practice that keeps learning coding exciting and practical.',
+    badges: ['Build and Learn', 'Creative UI', 'Easy to Explore'],
+    stats: [['3+', 'Learning tracks active'], ['10+', 'Hands-on practice builds'], ['Daily', 'Skill-building routine']],
+    caption: 'Great for younger visitors exploring coding through clear projects and visual learning.'
+  },
+
+  '18-24': {
+    pill: 'Open to internships, collaborations, and career growth',
+    greeting: 'Hello there, welcome to my portfolio.',
+    intro: "I'm Vivek",
+    meta: 'New Delhi, India | Computer Science student',
+    summary: 'I build modern interfaces, strengthen problem-solving with C++, and work on practical projects that support internship opportunities and real development experience.',
+    badges: ['Career Focused', 'Frontend + Backend', 'Portfolio Growth'],
+    stats: [['8.57', 'Current CGPA'], ['2+', 'Deployed UI projects'], ['7x', 'District chess champion']],
+    caption: 'Ideal for students and early-career professionals exploring projects and internship potential.'
+  },
+
+  '25-34': {
+    pill: 'Clear projects, practical delivery, and modern web skills',
+    greeting: 'Hello, welcome and thanks for visiting.',
+    intro: "I'm Vivek",
+    meta: 'New Delhi, India | Web developer',
+    summary: 'My work focuses on clean front-end execution, structured learning, and hands-on development aligned with practical product building.',
+    badges: ['Execution Focused', 'Modern Web Stack', 'Problem Solver'],
+    stats: [['8.57', 'Academic performance'], ['2+', 'Live project launches'], ['Full Stack', 'Learning direction']],
+    caption: 'A practical overview of my development work, projects, and technical growth.'
+  },
+
+  '35-44': {
+    pill: 'Professional presentation with structured technical highlights',
+    greeting: 'Welcome, and thank you for visiting my portfolio.',
+    intro: "I'm Vivek",
+    meta: 'New Delhi, India | Structured portfolio overview',
+    summary: 'This portfolio reflects disciplined learning, strong technical foundations, and project-focused work across front-end technologies, JavaScript, and backend fundamentals.',
+    badges: ['Structured Profile', 'Reliable Foundation', 'Project Delivery'],
+    stats: [['8.57', 'Academic record'], ['2+', 'Published web projects'], ['Consistent', 'Skills development']],
+    caption: 'A professional overview of my technical progress and project work.'
+  },
+
+  '45+': {
+    pill: 'Professional overview of work, learning, and development direction',
+    greeting: 'Welcome. I appreciate your time in reviewing my profile.',
+    intro: "I'm Vivek",
+    meta: 'New Delhi, India | Developer profile summary',
+    summary: 'I present my academic performance, practical web projects, and steady progress toward full stack development through this portfolio.',
+    badges: ['Professional View', 'Technical Focus', 'Steady Growth'],
+    stats: [['8.57', 'Academic standing'], ['2+', 'Portfolio projects'], ['Long-Term', 'Growth mindset']],
+    caption: 'A concise and professional summary of my skills, projects, and development journey.'
+  }
+};
 
 const updateMenuScrim = (isOpen) => {
   if (!menuScrim) return;
   menuScrim.setAttribute('aria-hidden', String(!isOpen));
 };
 
+const syncNavSlider = (activeLink, behavior = 'smooth') => {
+  if (!navTabs || !navSlider || window.innerWidth <= 980) return;
+  if (!(activeLink instanceof HTMLElement)) {
+    navSlider.style.opacity = '0';
+    return;
+  }
+
+  const left = activeLink.offsetLeft;
+  const width = activeLink.offsetWidth;
+  navSlider.style.width = `${width}px`;
+  navSlider.style.transform = `translateX(${left}px)`;
+  navSlider.style.opacity = '1';
+
+  const tabsViewport = navTabs.clientWidth;
+  const targetScroll = Math.max(0, left - (tabsViewport - width) / 2);
+  navTabs.scrollTo({
+    left: targetScroll,
+    behavior: prefersReducedMotion ? 'auto' : behavior,
+  });
+};
+
 const updateColorScheme = (theme) => {
   document.documentElement.style.colorScheme = theme === 'light' || theme === 'liquid' ? 'light' : 'dark';
+};
+
+const updateAudienceUi = (audience, ageRange = '') => {
+  if (audiencePill) {
+    const audienceLabel = audience ? `${audience.charAt(0).toUpperCase()}${audience.slice(1)} Theme` : 'Default';
+    audiencePill.textContent = ageRange ? `${audienceLabel} | ${ageRange}` : audienceLabel;
+  }
+  if (audienceGateNote) {
+    audienceGateNote.textContent = ageRange
+      ? `Saved for age group ${ageRange}. You can change this again from the top bar.`
+      : 'You can change this again from the top bar.';
+  }
+};
+
+const updateAgeExperience = (ageRange = '') => {
+  const content = ageExperienceMap[ageRange] || ageExperienceMap['25-34'];
+  document.documentElement.dataset.ageRange = ageRange || '25-34';
+  activeRolePhrases = getRolePhrasesForAge(ageRange);
+  if (availabilityPill) availabilityPill.textContent = content.pill;
+  if (heroGreeting) heroGreeting.textContent = content.greeting;
+  if (heroIntroLine) heroIntroLine.innerHTML = '<span class="intro-accent"></span>' + content.intro;
+  if (heroMeta) heroMeta.textContent = content.meta;
+  if (heroSummary) heroSummary.textContent = content.summary;
+  if (heroBadge1) heroBadge1.textContent = content.badges[0];
+  if (heroBadge2) heroBadge2.textContent = content.badges[1];
+  if (heroBadge3) heroBadge3.textContent = content.badges[2];
+  if (heroStatValue1) heroStatValue1.textContent = content.stats[0][0];
+  if (heroStatLabel1) heroStatLabel1.textContent = content.stats[0][1];
+  if (heroStatValue2) heroStatValue2.textContent = content.stats[1][0];
+  if (heroStatLabel2) heroStatLabel2.textContent = content.stats[1][1];
+  if (heroStatValue3) heroStatValue3.textContent = content.stats[2][0];
+  if (heroStatLabel3) heroStatLabel3.textContent = content.stats[2][1];
+  if (ctaCaption) ctaCaption.textContent = content.caption;
+};
+
+const markSelectedAgeChip = (ageRange) => {
+  ageChips.forEach((chip) => {
+    const isMatch = chip.dataset.ageRange === ageRange;
+    chip.classList.toggle('is-selected', isMatch);
+    chip.setAttribute('aria-pressed', String(isMatch));
+  });
+};
+
+const markSelectedAudienceButton = (audience) => {
+  audienceChoiceButtons.forEach((button) => {
+    const isMatch = button.dataset.audienceChoice === audience;
+    button.classList.toggle('is-selected', isMatch);
+    button.setAttribute('aria-pressed', String(isMatch));
+  });
+};
+
+const setFemalePortraitVisibility = (isVisible, persist = true) => {
+  const shouldShow = Boolean(isVisible);
+  document.documentElement.dataset.femalePortrait = shouldShow ? 'visible' : 'hidden';
+  if (heroProfile) {
+    heroProfile.setAttribute('aria-hidden', String(!shouldShow));
+  }
+  if (femalePortraitToggle) {
+    femalePortraitToggle.textContent = shouldShow ? 'Hide Profile Preview' : 'Show Profile Preview';
+    femalePortraitToggle.setAttribute('aria-pressed', String(shouldShow));
+  }
+  if (persist) {
+    try {
+      localStorage.setItem('portfolio-female-portrait', shouldShow ? 'visible' : 'hidden');
+    } catch (_err) {
+      // Ignore persistence errors.
+    }
+  }
+};
+
+const applyAudience = (audience, ageRange = '', persist = true) => {
+  if (!['male', 'female'].includes(audience)) return;
+
+  savedAudience = audience;
+  savedAgeRange = ageRange;
+  document.documentElement.dataset.audience = audience;
+  document.documentElement.dataset.ageTone = getAgeTone(ageRange);
+  updateAudienceUi(audience, ageRange);
+  updateAgeExperience(ageRange);
+  markSelectedAgeChip(ageRange);
+  markSelectedAudienceButton(audience);
+  if (audience !== 'female') {
+    setFemalePortraitVisibility(true, false);
+  } else {
+    let femalePortraitVisible = false;
+    try {
+      femalePortraitVisible = localStorage.getItem('portfolio-female-portrait') === 'visible';
+    } catch (_err) {
+      // Ignore persistence errors.
+    }
+    setFemalePortraitVisibility(femalePortraitVisible, false);
+  }
+  startRoleTyping();
+
+  if (persist) {
+    try {
+      localStorage.setItem(audienceKey, audience);
+      localStorage.setItem(ageKey, ageRange);
+    } catch (_err) {
+      // Ignore persistence errors.
+    }
+  }
+};
+
+const openAudienceGate = () => {
+  if (!audienceGate) return;
+  audienceGate.classList.add('is-open');
+  audienceGate.setAttribute('aria-hidden', 'false');
+  document.body.classList.add('gate-open');
+  if (ageChips[0]) {
+    window.setTimeout(() => ageChips[0].focus(), 20);
+  }
+};
+
+const closeAudienceGate = () => {
+  if (!audienceGate) return;
+  audienceGate.classList.remove('is-open');
+  audienceGate.setAttribute('aria-hidden', 'true');
+  document.body.classList.remove('gate-open');
 };
 
 const getAudioContext = () => {
@@ -160,16 +433,27 @@ const applyTheme = (theme, persist = true) => {
 };
 
 let initialTheme = 'dark';
+let savedAudience = '';
+let savedAgeRange = '';
 try {
   const savedTheme = localStorage.getItem(themeKey);
   if (savedTheme && supportedThemes.includes(savedTheme)) {
     initialTheme = savedTheme;
   }
+  savedAudience = localStorage.getItem(audienceKey) || '';
+  savedAgeRange = localStorage.getItem(ageKey) || '';
 } catch (_err) {
   // Ignore read errors and use default theme.
 }
 
 applyTheme(initialTheme, false);
+updateAudienceUi(savedAudience, savedAgeRange);
+document.documentElement.dataset.ageTone = getAgeTone(savedAgeRange);
+updateAgeExperience(savedAgeRange);
+
+if (savedAudience && ['male', 'female'].includes(savedAudience)) {
+  applyAudience(savedAudience, savedAgeRange, false);
+}
 
 themeButtons.forEach((button) => {
   button.addEventListener('click', () => {
@@ -177,6 +461,79 @@ themeButtons.forEach((button) => {
     playUiSound('theme');
   });
 });
+
+const refreshAudienceChoiceState = () => {
+  const hasAge = Boolean(savedAgeRange);
+  audienceChoiceButtons.forEach((button) => {
+    button.disabled = !hasAge;
+  });
+  if (!hasAge) {
+    markSelectedAgeChip('');
+    markSelectedAudienceButton('');
+  } else if (savedAudience) {
+    markSelectedAgeChip(savedAgeRange);
+    markSelectedAudienceButton(savedAudience);
+  }
+};
+
+if (agePicker) {
+  markSelectedAgeChip(savedAgeRange);
+  refreshAudienceChoiceState();
+  ageChips.forEach((chip) => {
+    chip.addEventListener('click', () => {
+      savedAgeRange = chip.dataset.ageRange || '';
+      markSelectedAgeChip(savedAgeRange);
+      refreshAudienceChoiceState();
+      playUiSound('tap');
+    });
+  });
+}
+
+audienceChoiceButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    const selectedAudience = button.dataset.audienceChoice;
+    const ageRange = savedAgeRange || '';
+    if (!selectedAudience || !ageRange) return;
+    applyAudience(selectedAudience, ageRange, true);
+    closeAudienceGate();
+    playUiSound('theme');
+  });
+});
+
+if (audiencePickerTrigger) {
+  audiencePickerTrigger.addEventListener('click', () => {
+    markSelectedAgeChip(savedAgeRange || '');
+    refreshAudienceChoiceState();
+    openAudienceGate();
+    playUiSound('tap');
+  });
+}
+
+if (femalePortraitToggle) {
+  femalePortraitToggle.addEventListener('click', () => {
+    const isVisible = document.documentElement.dataset.femalePortrait === 'visible';
+    setFemalePortraitVisibility(!isVisible, true);
+    playUiSound('tap');
+  });
+}
+
+startRoleTyping();
+
+if (audienceGate) {
+  audienceGate.addEventListener('click', (event) => {
+    if (event.target === audienceGate || event.target.closest('.audience-gate__scrim')) {
+      if (savedAudience && savedAgeRange) {
+        closeAudienceGate();
+      }
+    }
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && audienceGate.classList.contains('is-open') && savedAudience && savedAgeRange) {
+      closeAudienceGate();
+    }
+  });
+}
 
 try {
   const savedSound = localStorage.getItem(soundKey);
@@ -229,15 +586,18 @@ if (prefersReducedMotion || typeof window.IntersectionObserver !== 'function') {
 }
 
 const setActiveNav = (id) => {
+  let activeLink = null;
   navLinks.forEach((link) => {
     const isMatch = link.getAttribute('href') === `#${id}`;
     link.classList.toggle('active', isMatch);
     if (isMatch) {
       link.setAttribute('aria-current', 'page');
+      activeLink = link;
     } else {
       link.removeAttribute('aria-current');
     }
   });
+  syncNavSlider(activeLink, 'smooth');
 };
 
 if (typeof window.IntersectionObserver === 'function') {
@@ -283,6 +643,7 @@ navLinks.forEach((link) => {
 
   link.addEventListener('focus', () => {
     playUiSound('hover');
+    syncNavSlider(link, 'smooth');
   });
 });
 
@@ -336,6 +697,9 @@ if (menuToggle && navMenu) {
       document.body.classList.remove('menu-open');
       updateMenuScrim(false);
     }
+
+    const activeLink = Array.from(navLinks).find((link) => link.classList.contains('active')) || navLinks[0];
+    syncNavSlider(activeLink, 'auto');
   });
 }
 
@@ -361,6 +725,9 @@ const updateScrollUi = () => {
 window.addEventListener('scroll', updateScrollUi, { passive: true });
 updateScrollUi();
 updateMenuScrim(false);
+if (!savedAudience || !savedAgeRange) {
+  openAudienceGate();
+}
 
 const syncNavFromHash = () => {
   const currentHash = window.location.hash.replace('#', '');
@@ -376,6 +743,10 @@ const syncNavFromHash = () => {
 
 syncNavFromHash();
 window.addEventListener('hashchange', syncNavFromHash);
+window.addEventListener('load', () => {
+  const activeLink = Array.from(navLinks).find((link) => link.classList.contains('active')) || navLinks[0];
+  syncNavSlider(activeLink, 'auto');
+});
 
 if (backToTopBtn) {
   backToTopBtn.addEventListener('click', () => {
@@ -511,20 +882,28 @@ if (soundToggleBtn) {
   });
 }
 
-const rolePhrases = [
-  'Software Developer',
-  'Aspiring Full Stack Web Developer',
-  'Frontend-Focused Problem Solver',
-  'Building Real-World Web Projects',
-];
+function stopRoleTyping() {
+  if (roleTypingTimer) {
+    window.clearTimeout(roleTypingTimer);
+    roleTypingTimer = null;
+  }
+}
 
-if (dynamicRole && !prefersReducedMotion) {
+function startRoleTyping() {
+  if (!dynamicRole) return;
+  stopRoleTyping();
+
+  if (prefersReducedMotion) {
+    dynamicRole.textContent = activeRolePhrases[0];
+    return;
+  }
+
   let phraseIndex = 0;
   let charIndex = 0;
   let deleting = false;
 
   const typeTick = () => {
-    const currentText = rolePhrases[phraseIndex];
+    const currentText = activeRolePhrases[phraseIndex];
 
     if (deleting) {
       charIndex -= 1;
@@ -544,15 +923,13 @@ if (dynamicRole && !prefersReducedMotion) {
       deleting = true;
     } else if (deleting && charIndex === 0) {
       deleting = false;
-      phraseIndex = (phraseIndex + 1) % rolePhrases.length;
+      phraseIndex = (phraseIndex + 1) % activeRolePhrases.length;
       delay = 300;
     }
 
-    window.setTimeout(typeTick, delay);
+    roleTypingTimer = window.setTimeout(typeTick, delay);
   };
 
   dynamicRole.textContent = '';
-  window.setTimeout(typeTick, 450);
-} else if (dynamicRole) {
-  dynamicRole.textContent = rolePhrases[0];
+  roleTypingTimer = window.setTimeout(typeTick, 450);
 }

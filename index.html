@@ -18,6 +18,29 @@
   <div class="scroll-progress" id="scroll-progress"></div>
   <div class="page-glow"></div>
   <div class="menu-scrim" id="menu-scrim" aria-hidden="true"></div>
+  <div class="audience-gate" id="audience-gate" aria-hidden="true">
+    <div class="audience-gate__scrim"></div>
+    <div class="audience-gate__card panel" role="dialog" aria-modal="true" aria-labelledby="audience-gate-title">
+      <p class="section-kicker">Personalize View</p>
+      <h2 id="audience-gate-title">Choose age and audience</h2>
+      <p class="audience-gate__intro">Select your age and pick a preferred view. Male and female selection switches the complete look of the page.</p>
+      <div class="audience-gate__field">
+        <span>Your age</span>
+        <div class="age-picker" id="age-picker" role="group" aria-label="Age range selection">
+          <button class="age-chip" type="button" data-age-range="13-17">13-17</button>
+          <button class="age-chip" type="button" data-age-range="18-24">18-24</button>
+          <button class="age-chip" type="button" data-age-range="25-34">25-34</button>
+          <button class="age-chip" type="button" data-age-range="35-44">35-44</button>
+          <button class="age-chip" type="button" data-age-range="45+">45+</button>
+        </div>
+      </div>
+      <div class="audience-gate__actions">
+        <button class="btn btn-primary audience-choice" type="button" data-audience-choice="male">Male Theme</button>
+        <button class="btn btn-outline audience-choice" type="button" data-audience-choice="female">Female Theme</button>
+      </div>
+      <p class="audience-gate__note" id="audience-gate-note">You can change this again from the top bar.</p>
+    </div>
+  </div>
 
   <header class="topbar wrapper" id="top">
     <p class="brand">Vivek Yadav</p>
@@ -31,6 +54,10 @@
     </button>
     <nav class="nav-links" id="site-nav">
       <div class="nav-controls">
+        <div class="audience-switch" role="group" aria-label="Audience switcher">
+          <button class="audience-btn" id="audience-picker-trigger" type="button">Audience</button>
+          <span class="audience-pill" id="audience-pill">Default</span>
+        </div>
         <div class="theme-switch" role="group" aria-label="Theme switcher">
           <button class="theme-btn is-active" data-theme-btn="dark" aria-label="Dark theme">Dark</button>
           <button class="theme-btn" data-theme-btn="neon" aria-label="Neon theme">Neon</button>
@@ -40,6 +67,7 @@
         <button class="sound-toggle" id="sound-toggle" aria-label="Toggle sound effects" aria-pressed="true">Sound: On</button>
       </div>
       <div class="nav-tabs">
+        <span class="nav-slider" id="nav-slider" aria-hidden="true"></span>
         <a class="nav-link active" href="#home">Home</a>
         <a class="nav-link" href="#about">Details</a>
         <a class="nav-link" href="#education">Education</a>
@@ -59,15 +87,15 @@
         <div class="hero-layout">
           <div class="hero-copy">
             <p class="section-kicker">Portfolio</p>
-            <p class="availability-pill">Open to internships and collaborative projects</p>
-            <p class="greeting">Hello.</p>
-            <p class="intro-line"><span class="intro-accent"></span>I'm Vivek</p>
+            <p class="availability-pill" id="availability-pill">Open to internships and collaborative projects</p>
+            <p class="greeting" id="hero-greeting">Hello.</p>
+            <p class="intro-line" id="hero-intro-line"><span class="intro-accent"></span>I'm Vivek</p>
             <h1>
               <span class="name-line">Vivek Yadav</span>
               <span class="role-line" id="dynamic-role">Software Developer</span>
             </h1>
-            <p class="hero-meta">New Delhi, India</p>
-            <p class="hero-summary">
+            <p class="hero-meta" id="hero-meta">New Delhi, India</p>
+            <p class="hero-summary" id="hero-summary">
               I build polished front-end interfaces, strengthen problem-solving with C++, and keep expanding into backend fundamentals through project-based learning.
             </p>
           </div>
@@ -85,30 +113,31 @@
 
         <div class="hero-dashboard panel">
           <div class="hero-badges">
-            <span>Project-Oriented Learner</span>
-            <span>Frontend + Backend + SQL Basics</span>
-            <span>Problem Solver</span>
+            <span id="hero-badge-1">Project-Oriented Learner</span>
+            <span id="hero-badge-2">Frontend + Backend + SQL Basics</span>
+            <span id="hero-badge-3">Problem Solver</span>
           </div>
 
           <div class="hero-stats" aria-label="Quick profile highlights">
             <article class="hero-stat">
-              <strong>8.57</strong>
-              <span>Current CGPA</span>
+              <strong id="hero-stat-value-1">8.57</strong>
+              <span id="hero-stat-label-1">Current CGPA</span>
             </article>
             <article class="hero-stat">
-              <strong>2+</strong>
-              <span>Deployed UI projects</span>
+              <strong id="hero-stat-value-2">2+</strong>
+              <span id="hero-stat-label-2">Deployed UI projects</span>
             </article>
             <article class="hero-stat">
-              <strong>7x</strong>
-              <span>District chess champion</span>
+              <strong id="hero-stat-value-3">7x</strong>
+              <span id="hero-stat-label-3">District chess champion</span>
             </article>
           </div>
 
           <div class="hero-actions">
             <div class="cta-primary-block">
               <button class="btn btn-primary btn-wide modal-trigger" type="button" data-social-title="Featured Project" data-social-handle="Spotify Modified Clone" data-social-description="Responsive music player UI with playback controls, progress tracking, and DOM-driven interactions." data-social-url="https://vivekyadavoffline.github.io/spotify-clone/" data-social-action="Open Live Project">View Live Project</button>
-              <p class="cta-caption">Featured build: Spotify clone with responsive UI, playback controls, and DOM-driven interactions.</p>
+              <p class="cta-caption" id="cta-caption">Featured build: Spotify clone with responsive UI, playback controls, and DOM-driven interactions.</p>
+              <button class="btn btn-outline female-portrait-toggle" id="female-portrait-toggle" type="button" aria-pressed="false">Show Profile Preview</button>
             </div>
             <div class="cta-stack">
               <button class="btn btn-outline modal-trigger" type="button" data-social-title="GitHub Profile" data-social-handle="@vivekyadavoffline" data-social-description="Browse repositories, deployment work, and coding practice projects." data-social-url="https://github.com/vivekyadavoffline" data-social-action="Open GitHub">GitHub Profile</button>
@@ -343,7 +372,7 @@
           </button>
         </article>
         <article class="goal-item panel">
-          <button class="social-link linkedin social-trigger" type="button" aria-label="LinkedIn" data-social-title="LinkedIn" data-social-handle="Vivek Yadav" data-social-description="Professional profile, academic background, and project-facing career updates." data-social-url="https://linkedin.com/in/vivek-yadav-5523471b1" data-social-action="Open LinkedIn">
+          <button class="social-link linkedin social-trigger" type="button" aria-label="LinkedIn" data-social-title="LinkedIn" data-social-handle="Vivek Yadav" data-social-description="Professional profile, academic background, and project-facing career updates." data-social-url="https://www.linkedin.com/in/vivekyadavoffline" data-social-action="Open LinkedIn">
             <span class="social-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" role="img">
                 <path d="M6.94 8.5a1.72 1.72 0 1 1 0-3.44 1.72 1.72 0 0 1 0 3.44Zm1.5 2.12H5.45V20h2.99v-9.38Zm4.78 0h-2.96V20h2.96v-4.92c0-2.74 3.57-2.97 3.57 0V20h2.97v-6.03c0-4.7-5.22-4.53-6.54-2.22v-1.13Z"></path>
