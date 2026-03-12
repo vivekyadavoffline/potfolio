@@ -107,14 +107,18 @@ const getRolePhrasesForAge = (ageRange) => {
 };
 const ageExperienceMap = {
   '13-17': {
-    pill: 'Built for discovery, learning, and fast inspiration',
-    greeting: 'Hey buddy, welcome!',
+    pill: 'Explore coding, creativity, and beginner-friendly projects',
+    greeting: 'Hey there, welcome!',
     intro: "I'm Vivek",
-    meta: 'New Delhi, India | Early-stage builder',
-    summary: 'I focus on beginner-friendly projects, engaging front-end visuals, and hands-on practice that keeps learning coding exciting and practical.',
-    badges: ['Build and Learn', 'Creative UI', 'Easy to Explore'],
-    stats: [['3+', 'Learning tracks active'], ['10+', 'Hands-on practice builds'], ['Daily', 'Skill-building routine']],
-    caption: 'Great for younger visitors exploring coding through clear projects and visual learning.'
+    meta: 'Student developer | Learning and building every day',
+    summary: 'I create simple and fun projects that help beginners understand how websites work. My goal is to make coding interesting through visual interfaces and hands-on experimentation.',
+    badges: ['Beginner Friendly', 'Creative Learning', 'Explore Coding'],
+    stats: [
+      ['3+', 'Learning paths'],
+      ['10+', 'Practice builds'],
+      ['Daily', 'Coding habit']
+    ],
+    caption: 'Perfect for young learners discovering how coding and web development work.'
   },
 
   '18-24': {
@@ -122,43 +126,59 @@ const ageExperienceMap = {
     greeting: 'Hello there, welcome to my portfolio.',
     intro: "I'm Vivek",
     meta: 'New Delhi, India | Computer Science student',
-    summary: 'I build modern interfaces, strengthen problem-solving with C++, and work on practical projects that support internship opportunities and real development experience.',
+    summary: 'I focus on building modern web interfaces, improving problem-solving through C++, and developing practical projects that strengthen my portfolio for internships and real development experience.',
     badges: ['Career Focused', 'Frontend + Backend', 'Portfolio Growth'],
-    stats: [['8.57', 'Current CGPA'], ['2+', 'Deployed UI projects'], ['7x', 'District chess champion']],
-    caption: 'Ideal for students and early-career professionals exploring projects and internship potential.'
+    stats: [
+      ['8.57', 'Current CGPA'],
+      ['2+', 'Deployed projects'],
+      ['7x', 'District chess champion']
+    ],
+    caption: 'Designed for students, peers, and recruiters exploring my early career work.'
   },
 
   '25-34': {
-    pill: 'Clear projects, practical delivery, and modern web skills',
-    greeting: 'Hello, welcome and thanks for visiting.',
+    pill: 'Modern web development with practical project execution',
+    greeting: 'Hello, and thanks for visiting.',
     intro: "I'm Vivek",
-    meta: 'New Delhi, India | Web developer',
-    summary: 'My work focuses on clean front-end execution, structured learning, and hands-on development aligned with practical product building.',
+    meta: 'Web developer | Building practical web solutions',
+    summary: 'My focus is on writing clean code, developing responsive web interfaces, and learning full-stack technologies that support real product development.',
     badges: ['Execution Focused', 'Modern Web Stack', 'Problem Solver'],
-    stats: [['8.57', 'Academic performance'], ['2+', 'Live project launches'], ['Full Stack', 'Learning direction']],
-    caption: 'A practical overview of my development work, projects, and technical growth.'
+    stats: [
+      ['2+', 'Live web projects'],
+      ['Frontend', 'Core expertise'],
+      ['Full Stack', 'Learning direction']
+    ],
+    caption: 'A practical overview of my projects, technical skills, and development progress.'
   },
 
   '35-44': {
-    pill: 'Professional presentation with structured technical highlights',
-    greeting: 'Welcome, and thank you for visiting my portfolio.',
+    pill: 'Structured portfolio highlighting technical growth and discipline',
+    greeting: 'Welcome, and thank you for reviewing my portfolio.',
     intro: "I'm Vivek",
-    meta: 'New Delhi, India | Structured portfolio overview',
-    summary: 'This portfolio reflects disciplined learning, strong technical foundations, and project-focused work across front-end technologies, JavaScript, and backend fundamentals.',
-    badges: ['Structured Profile', 'Reliable Foundation', 'Project Delivery'],
-    stats: [['8.57', 'Academic record'], ['2+', 'Published web projects'], ['Consistent', 'Skills development']],
-    caption: 'A professional overview of my technical progress and project work.'
+    meta: 'Developer portfolio | Technical learning journey',
+    summary: 'This portfolio presents my academic achievements, technical learning path, and web development projects built while strengthening my software engineering fundamentals.',
+    badges: ['Structured Profile', 'Reliable Foundation', 'Consistent Learning'],
+    stats: [
+      ['8.57', 'Academic CGPA'],
+      ['2+', 'Published projects'],
+      ['Ongoing', 'Skill development']
+    ],
+    caption: 'A structured view of my progress in web development and software engineering.'
   },
 
   '45+': {
-    pill: 'Professional overview of work, learning, and development direction',
-    greeting: 'Welcome. I appreciate your time in reviewing my profile.',
+    pill: 'Clear and concise overview of skills, projects, and development progress',
+    greeting: 'Welcome. Thank you for taking the time to review my profile.',
     intro: "I'm Vivek",
-    meta: 'New Delhi, India | Developer profile summary',
-    summary: 'I present my academic performance, practical web projects, and steady progress toward full stack development through this portfolio.',
-    badges: ['Professional View', 'Technical Focus', 'Steady Growth'],
-    stats: [['8.57', 'Academic standing'], ['2+', 'Portfolio projects'], ['Long-Term', 'Growth mindset']],
-    caption: 'A concise and professional summary of my skills, projects, and development journey.'
+    meta: 'Computer Science student | Developer portfolio',
+    summary: 'This portfolio highlights my academic performance, practical development work, and continued effort to build strong technical foundations in modern web technologies.',
+    badges: ['Professional Overview', 'Technical Focus', 'Steady Growth'],
+    stats: [
+      ['8.57', 'Academic standing'],
+      ['2+', 'Portfolio projects'],
+      ['Long-Term', 'Learning mindset']
+    ],
+    caption: 'A concise summary of my skills, projects, and development journey.'
   }
 };
 
