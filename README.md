@@ -1,18 +1,16 @@
-
-
 # 🌐 Adaptive Portfolio — Vivek Yadav
 
-An interactive **developer portfolio website** designed to adapt its **theme, audience tone, and content style** based on user preferences.
+An interactive **developer portfolio website** with **dynamic themes and audience-based content optimization**.
 
-This portfolio focuses on **modern UI design, personalization, and user interaction**, allowing visitors to experience the site differently depending on their selected theme and audience profile.
+Unlike traditional portfolios that show the same content to everyone, this project adapts **visual style and communication tone** depending on the visitor’s preferences and audience profile.
 
-Built with **HTML, CSS, and JavaScript**.
+Built using **HTML, CSS, and JavaScript** with dynamic UI logic.
 
 ---
 
 # 🚀 Live Portfolio
 
-🔗 [https://vivekyadavoffline.github.io/](https://vivekyadavoffline.github.io/)
+🔗 https://vivekyadavoffline.github.io/
 
 ---
 
@@ -22,130 +20,126 @@ Built with **HTML, CSS, and JavaScript**.
 Computer Science Engineering Student
 New Delhi, India
 
-Focused on:
+I focus on building **modern web interfaces**, improving **problem-solving with C++**, and creating **practical development projects** that support internship opportunities and real-world engineering experience.
 
-* Frontend development
-* JavaScript-based UI interactions
-* Practical web projects
-* Internship-oriented portfolio building
-
-CGPA: **8.57 / 10**
+**Current CGPA:** 8.57 / 10
 
 ---
 
-# 🎨 Key Feature — Adaptive Themes
+# 🎨 Theme Engine
 
-The portfolio supports **8 different UI themes** based on gender-oriented design preferences.
+The portfolio includes **8 UI themes** designed for different visual preferences.
 
-### Theme Modes
+Theme calculation:
 
-**Male Themes**
+(Male + Female) × 4 styles = **8 themes**
+
+### Theme Styles
+
+Male Themes
 
 * Dark
 * Neon
 * Light
 * Liquid
 
-**Female Themes**
+Female Themes
 
 * Dark
 * Neon
 * Light
 * Liquid
 
-Total Themes:
+Each theme dynamically updates:
 
-```
-( Male + Female ) × 4 theme styles = 8 themes
-```
-
-Each theme dynamically adjusts **colors, UI behavior, and visual styling**.
-
----
-
-# 🧠 Audience-Based Content Personalization
-
-The portfolio also adapts **content tone and messaging** depending on the visitor's age group.
-
-Example audience groups:
-
-* Teen learners
-* Students
-* Early career developers
-* Recruiters
-* General audience
-
-Total audience modes:
-
-```
-5 Age-Based Content Modes
-```
+* UI colors
+* interface visuals
+* animation feel
+* layout styling
 
 ---
 
-# 🔥 Interactive Combination System
+# 🧠 Age-Based Content Optimization
 
-Since both **theme selection** and **audience content mode** can change dynamically:
+The portfolio dynamically adapts its **tone, messaging, and highlighted information** depending on the visitor’s age group.
 
+Implemented using a JavaScript configuration system:
+
+```javascript
+const ageExperienceMap = {
+  '13-17': {...},
+  '18-24': {...},
+  '25-34': {...},
+  '35-44': {...},
+  '45+': {...}
+};
 ```
-8 Themes × 5 Audience Modes = 40 Possible Interaction Combinations
-```
 
-This allows the portfolio to deliver a **different user experience depending on the visitor profile**.
+### Audience Segments
 
-Example:
+| Age Group | Presentation Focus                         |
+| --------- | ------------------------------------------ |
+| 13–17     | Coding discovery and learning inspiration  |
+| 18–24     | Internships, projects, and career growth   |
+| 25–34     | Practical development and product building |
+| 35–44     | Structured portfolio overview              |
+| 45+       | Professional technical summary             |
 
-| Theme               | Audience                          | Result |
-| ------------------- | --------------------------------- | ------ |
-| Dark + Student      | Learning-focused messaging        |        |
-| Neon + Early Career | Internship-focused presentation   |        |
-| Light + Recruiter   | Professional tone                 |        |
-| Liquid + Teen       | Exploratory and beginner-friendly |        |
-
-This approach creates a **highly personalized browsing experience**.
+Each group sees **different messaging while the core portfolio remains the same**.
 
 ---
 
-# 🧩 Features
+# 🔥 Interaction System
 
-* Dynamic theme switching
-* Audience-based content tone
-* Animated UI elements
-* Responsive layout
-* Profile preview system
-* Interactive navigation
-* Portfolio project showcase
-* Social profile integration
+Because both **themes** and **audience modes** can change dynamically:
+
+8 Themes × 5 Audience Modes = **40 Possible Portfolio Experiences**
+
+Each visitor can experience a slightly different **visual style and content emphasis**.
 
 ---
 
 # 🛠 Tech Stack
 
-Frontend
+### Programming
+
+* C++
+
+### Frontend
 
 * HTML5
-* CSS3
+* CSS3 (Flexbox, Grid)
 * JavaScript
 
-Concepts
+### Backend Basics
 
-* Dynamic UI switching
-* DOM manipulation
-* Event-driven interactions
-* Responsive design
-* UI personalization logic
+* Node.js
+* Express.js
 
-Tools
+### Database
+
+* MySQL
+* MongoDB
+
+### Tools
 
 * Git
 * GitHub
 * VS Code
+* Postman
+
+### Concepts
+
+* Object-Oriented Programming (OOP)
+* Data Structures
+* DOM Manipulation
+* Event-driven UI
 
 ---
 
-# 📂 Sections in the Portfolio
+# 📂 Portfolio Sections
 
-The website contains multiple structured sections:
+The website contains structured sections presenting a full developer profile:
 
 * Home
 * Details
@@ -160,53 +154,104 @@ The website contains multiple structured sections:
 
 ---
 
-# 💻 Projects Highlighted
+# 💻 Featured Projects
 
 ### Spotify Modified Clone
 
-* Responsive music player UI
-* Play / Pause functionality
+Stack: HTML, CSS, JavaScript
+
+Features:
+
+* Responsive music player interface
+* Play / pause logic
 * Progress tracking
 * DOM interaction
+* Event-driven controls
+
+Live Project
+https://vivekyadavoffline.github.io/spotify-clone/
+
+---
 
 ### Netflix Clone
 
+Stack: HTML, CSS
+
+Features:
+
 * Streaming platform UI
 * Flexbox & Grid layout
-* Hover animations
-* Responsive design
+* Hover effects and transitions
+* Responsive mobile-friendly design
+
+---
+
+# 🎓 Education
+
+### B.Tech — Computer Science Engineering
+
+Vivekananda Institute of Professional Studies – Technical Campus (VIPS-TC)
+
+Guru Gobind Singh Indraprastha University
+
+CGPA: **8.57 / 10 (Till Semester 3)**
+
+Semester Performance
+
+Semester 1 — 8.48
+Semester 2 — 8.32
+Semester 3 — 8.92
+
+---
+
+### Schooling
+
+Euro International School
+CBSE Board
+
+Class XII — **92.6%**
+Class X — **89%**
 
 ---
 
 # 🏆 Achievements
 
 * **7× Rewari District Chess Champion**
-* State Level Chess Participant
-* National Level Chess Participant
+* State-Level Chess Participant
+* National-Level Chess Participant
 
-Chess strengthens **strategic thinking and analytical decision-making**, which also supports programming skills.
+Chess strengthens **strategic thinking, patience, and analytical decision making**, which also supports programming skills.
 
 ---
 
-# 📧 Contact
+# 📜 Certifications
 
-Vivek Yadav
+* Generative AI — Google
+* Introduction to Cybersecurity
+* Artificial Intelligence Fundamentals
+* Introduction to Prompt Engineering
+
+---
+
+# 🌐 Online Profiles
+
+GitHub
+https://github.com/vivekyadavoffline
 
 Email
 [vivekbhiwadi704@gmail.com](mailto:vivekbhiwadi704@gmail.com)
 
-GitHub
-[https://github.com/vivekyadavoffline](https://github.com/vivekyadavoffline)
+---
+
+# 🤝 Open For
+
+* Internship opportunities
+* Technical collaborations
+* Learning projects
+* Real-world development experience
 
 ---
 
-# ⭐ Project Goal
+⭐ Built by **Vivek Yadav** using **HTML, CSS, and JavaScript**
 
-This project explores how **portfolio websites can become adaptive systems** rather than static pages by combining:
-
-* UI themes
-* audience-based messaging
-* interaction-driven design
-
-The goal is to create a **portfolio that feels personalized for each visitor**.
-
+Portfolio, projects, and social presence in one place.
