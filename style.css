@@ -3381,8 +3381,8 @@ h2 {
 @media (max-width:640px){
 
   .greeting{
-    font-size: 1.0rem;
-    line-height: 1.30;
+    font-size: clamp(0.25rem, 3.5vw, 1.0rem);
+    line-height: 1.35;
   }
 
 }
