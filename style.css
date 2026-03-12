@@ -3378,73 +3378,11 @@ h2 {
   }
 }
 
-@media (max-width: 640px) {
-  :root[data-audience="female"] .topbar {
-    border-radius: 16px;
+@media (max-width:640px){
+
+  .greeting{
+    font-size: 1.0rem;
+    line-height: 1.30;
   }
 
-  :root[data-audience="female"] .brand {
-    font-size: 1.04rem;
-  }
-
-  :root[data-audience="female"] .menu-toggle {
-    height: 3.8rem;
-    min-width: 8rem;
-    justify-content: space-between;
-  }
-
-  :root[data-audience="female"] .nav-links {
-    top: 78px;
-    left: 10px;
-    right: 10px;
-    border-radius: 28px;
-  }
-
-  :root[data-audience="female"] .nav-links.is-open {
-    padding: 0.72rem;
-    max-height: min(74dvh, 38rem);
-  }
-
-  :root[data-audience="female"] .nav-controls {
-    grid-template-columns: 1fr;
-    gap: 0.6rem;
-  }
-
-  :root[data-audience="female"] .nav-tabs {
-    grid-template-columns: 1fr 1fr;
-    gap: 0.6rem;
-  }
-
-  :root[data-audience="female"] .nav-link,
-  :root[data-audience="female"] .audience-btn,
-  :root[data-audience="female"] .audience-pill,
-  :root[data-audience="female"] .sound-toggle {
-    min-height: 3.35rem;
-    padding-inline: 0.82rem;
-  }
-
-  :root[data-audience="female"] .theme-btn {
-    min-height: 2.5rem;
-    padding-inline: 0.72rem;
-  }
-
-  :root[data-audience="female"] .hero-intro {
-    padding: 1.1rem;
-    border-width: 5px;
-    border-radius: 1.4rem;
-  }
-
-  :root[data-audience="female"] .greeting {
-    margin-bottom: 0.55rem;
-  }
-
-  :root[data-audience="female"] .role-line {
-    font-size: clamp(2.35rem, 12vw, 3.2rem);
-    min-height: 0;
-    max-width: 10ch;
-  }
-
-  :root[data-audience="female"] .hero-summary {
-    font-size: 0.95rem;
-  }
 }
