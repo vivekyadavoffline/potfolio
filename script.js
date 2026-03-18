@@ -261,22 +261,22 @@ const markSelectedAudienceButton = (audience) => {
   });
 };
 
-const setFemalePortraitVisibility = (isVisible, persist = true) => {
+const setProfileVisibility = (isVisible, persist = true) => {
   const shouldShow = Boolean(isVisible);
   document.documentElement.dataset.femalePortrait = shouldShow ? 'visible' : 'hidden';
   if (heroProfile) {
     heroProfile.setAttribute('aria-hidden', String(!shouldShow));
   }
-  if (femalePortraitToggle) {
-    femalePortraitToggle.textContent = shouldShow ? 'Hide Profile Preview' : 'Show Profile Preview';
-    femalePortraitToggle.setAttribute('aria-pressed', String(shouldShow));
+  const toggleBtn = document.querySelector('#female-portrait-toggle');
+  if (toggleBtn) {
+    toggleBtn.textContent = shouldShow ? 'Hide Profile Photo' : 'Show Profile Photo';
+    toggleBtn.setAttribute('aria-pressed', String(shouldShow));
+    toggleBtn.style.display = '';
   }
   if (persist) {
     try {
-      localStorage.setItem('portfolio-female-portrait', shouldShow ? 'visible' : 'hidden');
-    } catch (_err) {
-      // Ignore persistence errors.
-    }
+      localStorage.setItem('portfolio-profile-visible', shouldShow ? 'visible' : 'hidden');
+    } catch (_err) {}
   }
 };
 
@@ -291,26 +291,22 @@ const applyAudience = (audience, ageRange = '', persist = true) => {
   updateAgeExperience(ageRange);
   markSelectedAgeChip(ageRange);
   markSelectedAudienceButton(audience);
-  if (audience !== 'female') {
-    setFemalePortraitVisibility(true, false);
-  } else {
-    let femalePortraitVisible = false;
-    try {
-      femalePortraitVisible = localStorage.getItem('portfolio-female-portrait') === 'visible';
-    } catch (_err) {
-      // Ignore persistence errors.
-    }
-    setFemalePortraitVisibility(femalePortraitVisible, false);
-  }
+
+  // Restore profile visibility from localStorage for ALL genders (default visible)
+  let profileVisible = true;
+  try {
+    const saved = localStorage.getItem('portfolio-profile-visible');
+    if (saved === 'hidden') profileVisible = false;
+  } catch (_err) {}
+  setProfileVisibility(profileVisible, false);
+
   startRoleTyping();
 
   if (persist) {
     try {
       localStorage.setItem(audienceKey, audience);
       localStorage.setItem(ageKey, ageRange);
-    } catch (_err) {
-      // Ignore persistence errors.
-    }
+    } catch (_err) {}
   }
 };
 
@@ -473,6 +469,14 @@ updateAgeExperience(savedAgeRange);
 
 if (savedAudience && ['male', 'female'].includes(savedAudience)) {
   applyAudience(savedAudience, savedAgeRange, false);
+} else {
+  // No saved audience — still initialize profile toggle to default visible state
+  let profileVisible = true;
+  try {
+    const saved = localStorage.getItem('portfolio-profile-visible');
+    if (saved === 'hidden') profileVisible = false;
+  } catch (_err) {}
+  setProfileVisibility(profileVisible, false);
 }
 
 themeButtons.forEach((button) => {
@@ -532,7 +536,7 @@ if (audiencePickerTrigger) {
 if (femalePortraitToggle) {
   femalePortraitToggle.addEventListener('click', () => {
     const isVisible = document.documentElement.dataset.femalePortrait === 'visible';
-    setFemalePortraitVisibility(!isVisible, true);
+    setProfileVisibility(!isVisible, true);
     playUiSound('tap');
   });
 }
@@ -865,14 +869,45 @@ const initSkillsMarquee = () => {
   }
 };
 
+const getBalancedGridColumns = (count, maxColumns = 4) => {
+  if (count <= 1) return 1;
+  const baseRows = Math.max(1, Math.floor(Math.sqrt(count)));
+  return Math.min(maxColumns, Math.ceil(count / baseRows));
+};
+
+const applyBalancedGrid = (selector, maxColumns = 4) => {
+  const grid = document.querySelector(selector);
+  if (!grid) return;
+
+  const cardCount = grid.children.length;
+  const columnCount = getBalancedGridColumns(cardCount, maxColumns);
+  grid.style.setProperty('--grid-cols', String(columnCount));
+};
+
+const syncBalancedGrids = () => {
+  document.querySelectorAll('.info-grid').forEach((grid) => {
+    grid.style.setProperty('--grid-cols', String(getBalancedGridColumns(grid.children.length, 3)));
+  });
+
+  applyBalancedGrid('.timeline', 3);
+  applyBalancedGrid('.projects-grid', 3);
+  applyBalancedGrid('.achievements-grid', 4);
+  applyBalancedGrid('.certs-grid', 4);
+  applyBalancedGrid('.goal-list', 3);
+};
+
 initSkillsMarquee();
+syncBalancedGrids();
 
 let marqueeResizeTimer = null;
 window.addEventListener('resize', () => {
   if (marqueeResizeTimer) {
     clearTimeout(marqueeResizeTimer);
   }
-  marqueeResizeTimer = window.setTimeout(initSkillsMarquee, 140);
+  marqueeResizeTimer = window.setTimeout(() => {
+    initSkillsMarquee();
+    syncBalancedGrids();
+  }, 140);
 });
 
 document.querySelectorAll('.btn, .social-link').forEach((node) => {
@@ -939,7 +974,7 @@ function startRoleTyping() {
     let delay = deleting ? 45 : 75;
 
     if (!deleting && charIndex === currentText.length) {
-      delay = 1200;
+      delay = 1600;
       deleting = true;
     } else if (deleting && charIndex === 0) {
       deleting = false;
@@ -953,3 +988,23 @@ function startRoleTyping() {
   dynamicRole.textContent = '';
   roleTypingTimer = window.setTimeout(typeTick, 450);
 }
+
+/* ─── Floating CTA ─── */
+const floatingCtaEl = document.querySelector('#floating-cta');
+
+if (floatingCtaEl) {
+  const updateFloatingCta = () => {
+    const isVisible = window.scrollY > 440;
+    floatingCtaEl.classList.toggle('is-visible', isVisible);
+  };
+
+  window.addEventListener('scroll', updateFloatingCta, { passive: true });
+  updateFloatingCta();
+}
+
+/* ─── Skill chip hover sounds ─── */
+document.querySelectorAll('.skill-chip').forEach((chip) => {
+  chip.addEventListener('mouseenter', () => {
+    playUiSound('hover');
+  });
+});

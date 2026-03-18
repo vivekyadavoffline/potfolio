@@ -983,8 +983,144 @@ body.gate-open {
 }
 
 .female-portrait-toggle {
-  display: none;
+  display: inline-flex;
 }
+
+/* ─────────────────────────────────────────────────
+   STRUCTURAL & HAMBURGER IMPROVEMENTS (add-on pass)
+   ───────────────────────────────────────────────── */
+
+/* Skills bento: cards don't stretch to equal height */
+.skills-bento {
+  align-items: start;
+}
+
+/* Projects grid: cards same natural height */
+.projects-grid {
+  align-items: start;
+}
+
+/* Certifications grid */
+.certs-grid {
+  align-items: start;
+}
+
+/* Achievements grid */
+.achievements-grid {
+  align-items: start;
+}
+
+/* Better hamburger button — larger touch target, cleaner look */
+.menu-toggle {
+  min-width: 56px;
+}
+
+.menu-toggle__icon {
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--button-outline-bg) 78%, white 4%);
+  border: 1px solid var(--line);
+  transition: background 0.22s ease, border-color 0.22s ease, transform 0.22s ease;
+}
+
+.menu-toggle:hover .menu-toggle__icon {
+  background: color-mix(in srgb, var(--nav-hover-bg) 100%, transparent);
+  border-color: var(--nav-hover-border);
+}
+
+.menu-toggle.is-open .menu-toggle__icon {
+  background: color-mix(in srgb, var(--accent) 14%, var(--surface-strong));
+  border-color: color-mix(in srgb, var(--accent) 36%, transparent);
+}
+
+.menu-toggle__icon span {
+  width: 14px;
+  transition: transform 0.26s cubic-bezier(0.34, 1.56, 0.64, 1),
+              opacity 0.2s ease,
+              width 0.2s ease;
+}
+
+.menu-toggle__icon span:nth-child(2) {
+  width: 9px;
+  transform: translateX(2.5px);
+}
+
+/* When open: full X cross with bounce */
+.menu-toggle.is-open .menu-toggle__icon span:nth-child(1) {
+  transform: translateY(0) rotate(45deg);
+}
+.menu-toggle.is-open .menu-toggle__icon span:nth-child(2) {
+  opacity: 0;
+  width: 0;
+  transform: scaleX(0);
+}
+.menu-toggle.is-open .menu-toggle__icon span:nth-child(3) {
+  transform: translateY(0) rotate(-45deg);
+}
+
+/* Mobile nav panel — better spacing and visual */
+@media (max-width: 980px) {
+  .menu-toggle {
+    height: 48px;
+    padding: 0 1rem 0 0.9rem;
+    gap: 0.65rem;
+  }
+
+  .menu-toggle__text {
+    font-size: 0.74rem;
+  }
+
+  .nav-links.is-open {
+    border-radius: 20px;
+    box-shadow: 0 24px 52px rgba(0, 0, 0, 0.6), 0 0 0 1px var(--line);
+  }
+
+  /* Nav link cards in mobile menu */
+  .nav-link {
+    border-radius: 14px;
+    font-size: 0.95rem;
+    padding: 0.88rem 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+  }
+
+  .nav-link:active {
+    transform: scale(0.97);
+  }
+
+  .nav-link.active {
+    background: var(--nav-active-bg);
+    border-color: var(--nav-hover-border);
+  }
+
+  /* Theme buttons row — more tappable */
+  .theme-btn {
+    min-height: 3rem;
+    border-radius: 12px;
+    font-size: 0.82rem;
+  }
+
+  /* Audience button */
+  .audience-btn {
+    min-height: 3rem;
+    border-radius: 14px;
+    font-size: 0.8rem;
+  }
+
+  /* Sound toggle */
+  .sound-toggle {
+    border-radius: 14px;
+    font-size: 0.84rem;
+  }
+
+  /* Skills bento — always start-aligned on mobile */
+  .skills-bento {
+    align-items: start;
+  }
+}
+
 
 .wrapper {
   width: min(1180px, 93vw);
@@ -2015,7 +2151,7 @@ h2 {
 
 .info-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(var(--grid-cols, 3), minmax(0, 1fr));
   gap: var(--space-grid);
   align-items: stretch;
 }
@@ -2129,7 +2265,7 @@ h2 {
 .timeline {
   margin-top: 1rem;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  grid-template-columns: repeat(var(--grid-cols, 3), minmax(0, 1fr));
   gap: var(--space-grid);
   border-left: 0;
   padding-left: 0;
@@ -2168,7 +2304,7 @@ h2 {
 
 .goal-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(var(--grid-cols, 3), minmax(0, 1fr));
   gap: var(--space-grid);
   align-items: stretch;
   grid-auto-rows: 1fr;
@@ -3385,4 +3521,1712 @@ h2 {
     line-height: 1.35;
   }
 
+}
+
+/* ============================================================
+   === MODERN UPGRADE BLOCK — added upgrade pass ===
+   ============================================================ */
+
+/* ─── Btn small variant ─── */
+.btn-sm {
+  padding: 0.48rem 0.9rem;
+  font-size: 0.78rem;
+  min-height: 0;
+}
+
+/* --- Skills Bento --- */
+.skills-bento {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 272px);
+  gap: clamp(0.75rem, 1.5vw, 1.1rem);
+  margin-top: 0.2rem;
+  align-items: start;
+  justify-content: start;
+}
+
+.skills-group {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+  padding: clamp(1rem, 2vw, 1.35rem);
+  box-shadow: var(--panel-shadow), var(--panel-highlight);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+  min-width: 0;
+  width: 272px;
+  min-height: 220px;
+}
+
+.skills-group:hover {
+  transform: translateY(-2px);
+  border-color: var(--nav-hover-border);
+  box-shadow: var(--panel-shadow), var(--panel-highlight), 0 0 0 1px color-mix(in srgb, var(--accent) 18%, transparent);
+}
+
+.skills-group--wide {
+  grid-column: 1 / -1;
+  width: 100%;
+  min-height: auto;
+}
+
+.skills-group__label {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--kicker);
+}
+
+.skills-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.skill-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.38rem;
+  padding: 0.34rem 0.78rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: 1px solid var(--badge-border);
+  background: var(--badge-bg);
+  color: var(--badge-text);
+  cursor: default;
+  transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+  position: relative;
+}
+
+.skill-chip::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: var(--accent);
+  opacity: 0.75;
+}
+
+.skill-chip:hover {
+  transform: translateY(-1px) scale(1.03);
+  border-color: color-mix(in srgb, var(--accent) 48%, transparent);
+}
+
+.skill-chip[data-color="orange"]::before { background: #ff8c42; }
+.skill-chip[data-color="blue"]::before   { background: #49b3ff; }
+.skill-chip[data-color="yellow"]::before { background: #f5c518; }
+.skill-chip[data-color="green"]::before  { background: #3ecf8e; }
+.skill-chip[data-color="purple"]::before { background: #a78bfa; }
+.skill-chip[data-color="teal"]::before   { background: #38bdf8; }
+.skill-chip[data-color="muted"]::before  { background: var(--muted); }
+.skill-chip[data-color="accent"]::before { background: var(--accent); }
+
+.skill-chip--learning {
+  border-color: color-mix(in srgb, var(--accent) 32%, transparent);
+  background: color-mix(in srgb, var(--accent) 10%, var(--badge-bg));
+  color: var(--badge-text);
+}
+
+.skill-chip--learning::after {
+  content: "→";
+  font-size: 0.7rem;
+  opacity: 0.6;
+}
+
+/* ─── Projects Grid ─── */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-cols, 3), minmax(0, 1fr));
+  gap: clamp(0.9rem, 1.8vw, 1.3rem);
+  align-items: start;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  overflow: hidden;
+  transition: transform 0.24s ease, box-shadow 0.24s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--panel-shadow), 0 0 0 1px color-mix(in srgb, var(--accent) 22%, transparent);
+}
+
+.project-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: clamp(0.9rem, 1.5vw, 1.1rem) clamp(1rem, 2vw, 1.35rem) 0.75rem;
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(135deg,
+    color-mix(in srgb, var(--accent) 8%, transparent),
+    color-mix(in srgb, var(--accent-2) 6%, transparent)
+  );
+}
+
+.project-card__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.38rem;
+}
+
+.project-badge {
+  padding: 0.22rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  border: 1px solid var(--badge-border);
+  background: var(--badge-bg);
+  color: var(--badge-text);
+}
+
+.project-status {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.22rem 0.62rem;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+
+.project-status--live {
+  background: color-mix(in srgb, #3ecf8e 18%, transparent);
+  color: #3ecf8e;
+  border: 1px solid color-mix(in srgb, #3ecf8e 36%, transparent);
+}
+
+.project-status--wip {
+  background: color-mix(in srgb, var(--accent-2) 18%, transparent);
+  color: var(--accent-2);
+  border: 1px solid color-mix(in srgb, var(--accent-2) 36%, transparent);
+}
+
+.project-card__body {
+  flex: 1;
+  padding: clamp(1rem, 2vw, 1.3rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.project-card__body h3 {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.project-card__desc {
+  font-size: 0.88rem;
+  color: var(--content-color);
+  line-height: 1.6;
+}
+
+.project-highlights {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.32rem;
+}
+
+.project-highlights li {
+  font-size: 0.82rem;
+  color: var(--muted);
+  padding-left: 1.1rem;
+  position: relative;
+}
+
+.project-highlights li::before {
+  content: "·";
+  position: absolute;
+  left: 0.3rem;
+  color: var(--accent);
+  font-weight: 900;
+}
+
+.project-card__footer {
+  padding: clamp(0.75rem, 1.5vw, 1rem) clamp(1rem, 2vw, 1.35rem);
+  border-top: 1px solid var(--line);
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+/* ─── Featured Project Card (HISAB-H) ─── */
+.project-card--featured {
+  grid-column: 1 / -1;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-card--featured::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(118deg,
+    color-mix(in srgb, var(--accent) 9%, transparent),
+    color-mix(in srgb, var(--accent-2) 6%, transparent) 50%,
+    transparent 80%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.project-card--featured > * {
+  position: relative;
+  z-index: 1;
+}
+
+.project-card--featured .project-card__header {
+  background: linear-gradient(115deg,
+    color-mix(in srgb, var(--accent) 14%, transparent),
+    color-mix(in srgb, var(--accent-2) 10%, transparent)
+  );
+  border-bottom-color: color-mix(in srgb, var(--accent) 24%, transparent);
+}
+
+.project-card--featured .project-card__body h3 {
+  font-size: 1.22rem;
+}
+
+.project-card__eyebrow {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--accent) 82%, var(--kicker));
+  margin-bottom: 0.4rem;
+}
+
+/* Status: In Dev */
+.project-status--dev {
+  background: color-mix(in srgb, #f59e0b 18%, transparent);
+  color: #f59e0b;
+  border: 1px solid color-mix(in srgb, #f59e0b 36%, transparent);
+}
+
+/* Featured card: wider project grid on large screens */
+@media (min-width: 900px) {
+  .project-card--featured .project-highlights {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.28rem 1.4rem;
+  }
+  .project-card--featured .project-card__body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem 2rem;
+    align-items: start;
+  }
+  .project-card--featured .project-card__body h3,
+  .project-card--featured .project-card__eyebrow {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Age tone: featured card adjustments */
+:root[data-age-tone="youth"] .project-card--featured .project-card__body h3 {
+  font-size: 1.3rem;
+}
+:root[data-age-tone="professional"] .project-card--featured .project-card__body h3 {
+  font-size: 1.05rem;
+  letter-spacing: 0.02em;
+}
+
+.achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-cols, 3), minmax(0, 1fr));
+  gap: clamp(0.75rem, 1.5vw, 1.1rem);
+  align-items: start;
+}
+
+.achievement-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: clamp(1rem, 2vw, 1.35rem);
+  height: 148px;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+.achievement-card:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--accent) 38%, transparent) !important;
+}
+
+.achievement-icon {
+  font-size: 2rem;
+  line-height: 1;
+  flex-shrink: 0;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.22));
+}
+
+.achievement-title {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1.35;
+}
+
+.achievement-sub {
+  margin-top: 0.3rem;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+/* ─── Certifications Grid ─── */
+.certs-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-cols, 4), minmax(0, 1fr));
+  gap: clamp(0.75rem, 1.5vw, 1.1rem);
+}
+
+.cert-card {
+  position: relative;
+  padding: clamp(1rem, 2vw, 1.35rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  height: 240px;
+  overflow: hidden;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+.cert-card:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--accent-2) 42%, transparent) !important;
+}
+
+.cert-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg,
+    color-mix(in srgb, var(--accent-2) 7%, transparent),
+    transparent 60%
+  );
+  pointer-events: none;
+}
+
+.cert-issuer {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--kicker);
+  border: 1px solid var(--badge-border);
+  background: var(--badge-bg);
+  border-radius: 999px;
+  padding: 0.18rem 0.55rem;
+  align-self: flex-start;
+}
+
+.cert-icon {
+  font-size: 1.7rem;
+  line-height: 1;
+}
+
+.cert-name {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1.3;
+}
+
+.cert-desc {
+  font-size: 0.78rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* ─── Footer Redesign ─── */
+.site-footer {
+  margin-top: var(--space-section);
+  padding: clamp(1.5rem, 3vw, 2.5rem) 0;
+  border-top: 1px solid var(--line);
+}
+
+.footer-inner {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: start;
+  gap: 1.5rem 3rem;
+}
+
+.footer-name {
+  font-family: "Space Grotesk", "Manrope", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 0.35rem;
+}
+
+.footer-tagline {
+  font-size: 0.85rem;
+  color: var(--muted);
+  max-width: 42ch;
+  line-height: 1.6;
+}
+
+.footer-mark {
+  margin-top: 0.75rem;
+  font-size: 0.72rem;
+  color: var(--muted);
+  opacity: 0.7;
+}
+
+.footer-links {
+  display: grid;
+  grid-template-columns: repeat(2, max-content);
+  gap: 0.35rem 1.2rem;
+  align-content: start;
+}
+
+.footer-links a {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.18s ease;
+}
+
+.footer-links a:hover {
+  color: var(--text);
+}
+
+@media (max-width: 600px) {
+  .footer-inner {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+  .footer-links {
+    grid-template-columns: repeat(2, max-content);
+  }
+}
+
+/* ─── Floating CTA ─── */
+.floating-cta {
+  position: fixed;
+  bottom: 5rem;
+  right: 1.2rem;
+  z-index: 210;
+  opacity: 0;
+  transform: translateY(12px) scale(0.94);
+  pointer-events: none;
+  transition: opacity 0.28s ease, transform 0.28s ease;
+}
+
+.floating-cta.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.floating-cta__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.7rem 1.15rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, #25d366 44%, transparent);
+  background: color-mix(in srgb, #25d366 92%, black 8%);
+  color: #ffffff;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 8px 22px rgba(37, 211, 102, 0.38), 0 2px 8px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  position: relative;
+}
+
+.floating-cta__btn::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 999px;
+  background: rgba(37, 211, 102, 0.22);
+  animation: floatingPulse 2.2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.floating-cta__btn:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 14px 32px rgba(37, 211, 102, 0.5), 0 4px 12px rgba(0,0,0,0.24);
+  background: #25d366;
+}
+
+.floating-cta__btn svg {
+  fill: #ffffff;
+  flex-shrink: 0;
+}
+
+@keyframes floatingPulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50%       { opacity: 0;   transform: scale(1.36); }
+}
+
+/* ─── Responsive tweaks for new sections ─── */
+@media (max-width: 640px) {
+  .skills-bento {
+    grid-template-columns: 1fr;
+  }
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+  .achievements-grid,
+  .certs-grid {
+    grid-template-columns: 1fr;
+  }
+  .floating-cta {
+    bottom: 4.5rem;
+    right: 0.9rem;
+  }
+  .floating-cta__btn span {
+    display: none;
+  }
+  .floating-cta__btn {
+    padding: 0.75rem;
+    border-radius: 50%;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 900px) {
+  .skills-bento {
+    grid-template-columns: repeat(2, 272px);
+    justify-content: start;
+  }
+  .certs-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ============================================================
+   === AGE × GENDER × THEME DESIGN MATRIX ===
+   4 themes × 2 genders × 3 age tones (youth/balanced/professional)
+   ============================================================ */
+
+/* ─── YOUTH TONE (13-17, 18-24) — Vibrant, playful, energetic ─── */
+
+:root[data-age-tone="youth"] {
+  /* Layout & spacing — more breathing room, rounder everything */
+  --card-radius: 24px;
+  --space-section: clamp(2.8rem, 5.8vw, 4.8rem);
+  --space-card: clamp(1.1rem, 2.2vw, 1.5rem);
+  /* Glow effects on panels */
+  --panel-shadow:
+    0 20px 50px color-mix(in srgb, var(--accent) 18%, rgba(0,0,0,0.44)),
+    0 4px 12px rgba(0,0,0,0.18);
+}
+
+/* Youth: heading gradient treatment */
+:root[data-age-tone="youth"] h2 {
+  background: linear-gradient(110deg,
+    var(--text) 30%,
+    color-mix(in srgb, var(--accent) 72%, var(--text) 28%)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Youth: skill chips — more colorful, rounder */
+:root[data-age-tone="youth"] .skill-chip {
+  border-radius: 999px;
+  font-weight: 700;
+  padding: 0.4rem 0.9rem;
+  border-color: color-mix(in srgb, var(--accent) 30%, var(--badge-border));
+}
+
+:root[data-age-tone="youth"] .skill-chip--learning {
+  background: linear-gradient(90deg,
+    color-mix(in srgb, var(--accent) 14%, var(--badge-bg)),
+    color-mix(in srgb, var(--accent-2) 10%, var(--badge-bg))
+  );
+  border-color: color-mix(in srgb, var(--accent) 38%, transparent);
+  animation: chipPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* Youth: project card header — strong gradient */
+:root[data-age-tone="youth"] .project-card__header {
+  background: linear-gradient(110deg,
+    color-mix(in srgb, var(--accent) 16%, transparent),
+    color-mix(in srgb, var(--accent-2) 12%, transparent)
+  );
+  border-bottom-color: color-mix(in srgb, var(--accent) 22%, transparent);
+}
+
+/* Youth: cert card shimmer */
+:root[data-age-tone="youth"] .cert-card::before {
+  background: linear-gradient(135deg,
+    color-mix(in srgb, var(--accent) 12%, transparent),
+    color-mix(in srgb, var(--accent-2) 8%, transparent) 60%
+  );
+}
+
+/* Youth: achievement icons larger */
+:root[data-age-tone="youth"] .achievement-icon {
+  font-size: 2.5rem;
+}
+
+/* Youth: section kicker — gradient pill */
+:root[data-age-tone="youth"] .section-kicker {
+  display: inline-block;
+  background: linear-gradient(90deg,
+    color-mix(in srgb, var(--accent) 18%, transparent),
+    color-mix(in srgb, var(--accent-2) 14%, transparent)
+  );
+  border: 1px solid color-mix(in srgb, var(--accent) 28%, transparent);
+  border-radius: 999px;
+  padding: 0.2rem 0.65rem;
+  letter-spacing: 0.14em;
+  color: color-mix(in srgb, var(--accent) 80%, var(--kicker));
+}
+
+/* Youth: floating CTA pulse faster */
+:root[data-age-tone="youth"] .floating-cta__btn::before {
+  animation-duration: 1.6s;
+}
+
+/* Youth: cards hover — bigger lift */
+:root[data-age-tone="youth"] .project-card:hover,
+:root[data-age-tone="youth"] .cert-card:hover,
+:root[data-age-tone="youth"] .skills-group:hover {
+  transform: translateY(-5px) scale(1.01);
+}
+
+/* Youth: nav links fully pill */
+:root[data-age-tone="youth"] .nav-link {
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+/* Youth: footer name gradient */
+:root[data-age-tone="youth"] .footer-name {
+  background: linear-gradient(110deg,
+    color-mix(in srgb, var(--accent) 72%, var(--text)),
+    color-mix(in srgb, var(--accent-2) 68%, var(--text))
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@keyframes chipPop {
+  from { transform: scale(0.8); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
+}
+
+/* ─── AGE 13-17 specific (most playful) ─── */
+:root[data-age-range="13-17"] .skills-group {
+  border-width: 1.5px;
+  border-color: color-mix(in srgb, var(--accent) 28%, var(--line));
+}
+
+:root[data-age-range="13-17"] .skills-bento {
+    grid-template-columns: repeat(auto-fit, 272px);
+  }
+
+:root[data-age-range="13-17"] .project-card__body h3 {
+  font-size: 1.2rem;
+  background: linear-gradient(90deg,
+    var(--text),
+    color-mix(in srgb, var(--accent) 62%, var(--text))
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+:root[data-age-range="13-17"] .cert-icon {
+  font-size: 2.1rem;
+}
+
+:root[data-age-range="13-17"] .section-head h2 {
+  font-size: clamp(1.7rem, 4.5vw, 2.6rem);
+}
+
+/* ─── AGE 18-24 specific (career-focused, modern) ─── */
+:root[data-age-range="18-24"] .project-card {
+  border-width: 1.5px;
+}
+
+:root[data-age-range="18-24"] .project-card__header {
+  border-bottom-width: 1.5px;
+}
+
+:root[data-age-range="18-24"] .achievements-grid {
+  grid-template-columns: repeat(var(--grid-cols, 4), minmax(0, 1fr));
+}
+
+/* ─── PROFESSIONAL TONE (35-44, 45+) — Refined, structured, minimal ─── */
+
+:root[data-age-tone="professional"] {
+  --card-radius: 12px;
+  --space-section: clamp(2.4rem, 5vw, 4rem);
+  --space-card: clamp(0.9rem, 1.8vw, 1.2rem);
+}
+
+/* Professional: headings — serif weight, subdued */
+:root[data-age-tone="professional"] h2 {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+
+:root[data-age-tone="professional"] h3 {
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+/* Professional: section kicker — upper-case label bar */
+:root[data-age-tone="professional"] .section-kicker {
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 0.35rem;
+  display: block;
+  width: max-content;
+}
+
+/* Professional: skill chips — rectangular, generous spacing */
+:root[data-age-tone="professional"] .skill-chip {
+  border-radius: 6px;
+  font-size: 0.76rem;
+  letter-spacing: 0.04em;
+  padding: 0.3rem 0.65rem;
+}
+
+:root[data-age-tone="professional"] .skills-group {
+  border-radius: 12px;
+}
+
+/* Professional: project cards — tight, clean lines */
+:root[data-age-tone="professional"] .project-card {
+  border-radius: 12px;
+}
+
+:root[data-age-tone="professional"] .project-card__header {
+  background: color-mix(in srgb, var(--panel) 92%, var(--accent) 4%);
+}
+
+:root[data-age-tone="professional"] .project-card__body h3 {
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+}
+
+/* Professional: cert cards — structured, label-first */
+:root[data-age-tone="professional"] .cert-card {
+  border-radius: 10px;
+}
+
+:root[data-age-tone="professional"] .cert-name {
+  font-size: 0.88rem;
+  letter-spacing: 0.03em;
+}
+
+:root[data-age-tone="professional"] .cert-icon {
+  font-size: 1.35rem;
+}
+
+/* Professional: achievements — minimal icon, text dominant */
+:root[data-age-tone="professional"] .achievement-icon {
+  font-size: 1.4rem;
+  opacity: 0.82;
+}
+
+:root[data-age-tone="professional"] .achievement-title {
+  font-size: 0.9rem;
+  letter-spacing: 0.03em;
+}
+
+/* Professional: nav links — rectangular tabs, not pills */
+:root[data-age-tone="professional"] .nav-link {
+  border-radius: 8px;
+  letter-spacing: 0.04em;
+  font-size: 0.8rem;
+}
+
+/* Professional: hover — subtle, no bounce */
+:root[data-age-tone="professional"] .project-card:hover,
+:root[data-age-tone="professional"] .cert-card:hover,
+:root[data-age-tone="professional"] .skills-group:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--panel-shadow);
+}
+
+/* Professional: footer — compact, structured */
+:root[data-age-tone="professional"] .footer-links {
+  gap: 0.28rem 1.4rem;
+}
+
+:root[data-age-tone="professional"] .footer-links a {
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+:root[data-age-tone="professional"] .footer-name {
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+}
+
+/* ─── AGE 45+ specific (clearest, most legible) ─── */
+:root[data-age-range="45+"] .skills-bento {
+    grid-template-columns: repeat(auto-fit, 272px);
+  }
+
+:root[data-age-range="45+"] .skills-group__label {
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+}
+
+:root[data-age-range="45+"] .skill-chip {
+  font-size: 0.82rem;
+  padding: 0.36rem 0.8rem;
+}
+
+:root[data-age-range="45+"] .project-card__desc {
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+:root[data-age-range="45+"] .cert-desc {
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
+:root[data-age-range="45+"] .achievement-sub {
+  font-size: 0.82rem;
+}
+
+/* ─── AGE 35-44 specific (structured professional) ─── */
+:root[data-age-range="35-44"] .certs-grid {
+  grid-template-columns: repeat(var(--grid-cols, 4), minmax(0, 1fr));
+}
+
+:root[data-age-range="35-44"] .section-head {
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+/* ─── FEMALE × YOUTH ─── */
+
+:root[data-audience="female"][data-age-tone="youth"] {
+  --card-radius: 26px;
+}
+
+/* Female youth: headers get soft pink gradient gradient */
+:root[data-audience="female"][data-age-tone="youth"] h2,
+:root[data-audience="female"][data-age-tone="youth"] .project-card__body h3,
+:root[data-audience="female"][data-age-tone="youth"] .achievement-title {
+  background: linear-gradient(110deg, var(--accent), var(--accent-2, #ffb45f));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+:root[data-audience="female"][data-age-tone="youth"] .skill-chip {
+  border-color: color-mix(in srgb, var(--accent) 36%, transparent);
+  background: color-mix(in srgb, var(--accent) 10%, var(--badge-bg));
+}
+
+:root[data-audience="female"][data-age-tone="youth"] .skill-chip::before {
+  background: var(--accent);
+}
+
+:root[data-audience="female"][data-age-tone="youth"] .project-card__header {
+  background: linear-gradient(110deg,
+    color-mix(in srgb, var(--accent) 18%, transparent),
+    color-mix(in srgb, #ffb45f 12%, transparent)
+  );
+}
+
+:root[data-audience="female"][data-age-tone="youth"] .cert-card::before {
+  background: linear-gradient(135deg,
+    color-mix(in srgb, var(--accent) 14%, transparent),
+    transparent 60%
+  );
+}
+
+:root[data-audience="female"][data-age-tone="youth"] .section-kicker {
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  border-color: color-mix(in srgb, var(--accent) 32%, transparent);
+}
+
+:root[data-audience="female"][data-age-tone="youth"] .footer-name {
+  background: linear-gradient(110deg, var(--accent), #ffb45f);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Female youth: floating CTA — pink */
+:root[data-audience="female"][data-age-tone="youth"] .floating-cta__btn {
+  background: linear-gradient(110deg, var(--accent), #ff9d72);
+  border-color: color-mix(in srgb, var(--accent) 44%, transparent);
+  box-shadow: 0 8px 22px color-mix(in srgb, var(--accent) 38%, transparent);
+}
+
+:root[data-audience="female"][data-age-tone="youth"] .floating-cta__btn::before {
+  background: color-mix(in srgb, var(--accent) 22%, transparent);
+}
+
+:root[data-audience="female"][data-age-tone="youth"] .floating-cta__btn:hover {
+  box-shadow: 0 14px 32px color-mix(in srgb, var(--accent) 50%, transparent);
+}
+
+/* ─── FEMALE × PROFESSIONAL ─── */
+
+:root[data-audience="female"][data-age-tone="professional"] {
+  --card-radius: 14px;
+}
+
+:root[data-audience="female"][data-age-tone="professional"] .skill-chip {
+  border-radius: 8px;
+  font-size: 0.76rem;
+  letter-spacing: 0.03em;
+}
+
+:root[data-audience="female"][data-age-tone="professional"] .cert-card {
+  border-radius: 14px;
+}
+
+:root[data-audience="female"][data-age-tone="professional"] .project-card {
+  border-radius: 14px;
+}
+
+:root[data-audience="female"][data-age-tone="professional"] .section-kicker {
+  color: color-mix(in srgb, var(--accent) 74%, var(--muted));
+  letter-spacing: 0.18em;
+}
+
+/* ─── FEMALE + new components — apply all female card colors ─── */
+:root[data-audience="female"] .skills-group {
+  background: var(--female-card-bg, var(--panel));
+  border-color: var(--female-card-border, var(--line));
+  color: var(--female-card-text, var(--text));
+}
+
+:root[data-audience="female"] .skill-chip {
+  background: color-mix(in srgb, var(--accent) 10%, var(--badge-bg));
+  border-color: color-mix(in srgb, var(--accent) 28%, var(--badge-border));
+  color: var(--female-card-text, var(--badge-text));
+}
+
+:root[data-audience="female"] .project-card {
+  background: var(--female-card-bg, var(--panel));
+  border-color: var(--female-card-border, var(--line));
+}
+
+:root[data-audience="female"] .cert-card {
+  background: var(--female-card-bg, var(--panel));
+  border-color: var(--female-card-border, var(--line));
+}
+
+:root[data-audience="female"] .achievement-card {
+  background: var(--female-card-bg, var(--panel));
+  border-color: var(--female-card-border, var(--line));
+}
+
+:root[data-audience="female"] .cert-name,
+:root[data-audience="female"] .project-card__body h3,
+:root[data-audience="female"] .achievement-title {
+  color: var(--female-heading-color, var(--text));
+}
+
+:root[data-audience="female"] .cert-desc,
+:root[data-audience="female"] .project-card__desc {
+  color: var(--female-body-copy, var(--content-color));
+}
+
+:root[data-audience="female"] .achievement-sub,
+:root[data-audience="female"] .skills-group__label {
+  color: var(--female-muted-meta, var(--muted));
+}
+
+:root[data-audience="female"] .project-highlights li {
+  color: var(--female-muted-meta, var(--muted));
+}
+
+:root[data-audience="female"] .cert-issuer {
+  color: var(--female-kicker-color, var(--kicker));
+}
+
+:root[data-audience="female"] .footer-inner {
+  color: var(--female-body-copy, var(--muted));
+}
+
+:root[data-audience="female"] .footer-name {
+  color: var(--female-heading-color, var(--text));
+}
+
+:root[data-audience="female"] .footer-links a {
+  color: var(--female-muted-meta, var(--muted));
+}
+
+:root[data-audience="female"] .footer-links a:hover {
+  color: var(--female-heading-color, var(--text));
+}
+
+/* ─── DARK THEME × AGE overrides ─── */
+
+:root[data-theme="dark"][data-age-tone="youth"] .skills-group {
+  border-color: color-mix(in srgb, var(--accent-2) 22%, var(--line));
+}
+
+:root[data-theme="dark"][data-age-tone="professional"] .skills-group {
+  background: rgba(8, 8, 8, 0.88);
+}
+
+:root[data-theme="dark"][data-age-tone="professional"] .project-card__header {
+  background: rgba(10, 10, 10, 0.6);
+}
+
+/* ─── NEON THEME × AGE ─── */
+
+:root[data-theme="neon"][data-age-tone="youth"] .skills-group {
+  box-shadow:
+    var(--panel-shadow),
+    0 0 18px color-mix(in srgb, var(--accent) 14%, transparent);
+}
+
+:root[data-theme="neon"][data-age-tone="youth"] .skill-chip {
+  box-shadow: 0 0 8px color-mix(in srgb, var(--accent) 18%, transparent);
+}
+
+:root[data-theme="neon"][data-age-tone="youth"] .project-card:hover {
+  box-shadow:
+    var(--panel-shadow),
+    0 0 24px color-mix(in srgb, var(--accent) 22%, transparent);
+}
+
+:root[data-theme="neon"][data-age-tone="youth"] h2 {
+  background: linear-gradient(110deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+:root[data-theme="neon"][data-age-tone="professional"] .skill-chip {
+  box-shadow: none;
+  border-color: color-mix(in srgb, var(--accent-2) 24%, var(--badge-border));
+}
+
+:root[data-theme="neon"][data-age-tone="professional"] h2 {
+  color: var(--text);
+}
+
+/* ─── LIGHT THEME × AGE ─── */
+
+:root[data-theme="light"][data-age-tone="youth"] h2 {
+  background: linear-gradient(110deg, #ff7f67, #3d9dff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+:root[data-theme="light"][data-age-tone="youth"] .skills-group {
+  border-color: color-mix(in srgb, var(--accent) 28%, rgba(0,0,0,0.08));
+  box-shadow: 0 4px 16px rgba(0,0,0,0.07), 0 1px 3px rgba(0,0,0,0.05);
+}
+
+:root[data-theme="light"][data-age-tone="youth"] .project-card__header {
+  background: linear-gradient(110deg,
+    color-mix(in srgb, #ff7f67 10%, transparent),
+    color-mix(in srgb, #3d9dff 8%, transparent)
+  );
+}
+
+:root[data-theme="light"][data-age-tone="professional"] .skills-group {
+  border-color: rgba(0,0,0,0.09);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+:root[data-theme="light"][data-age-tone="professional"] .skill-chip {
+  background: rgba(0,0,0,0.03);
+  border-color: rgba(0,0,0,0.09);
+  color: #2d2d2d;
+}
+
+:root[data-theme="light"][data-age-tone="professional"] h2 {
+  color: #111111;
+}
+
+/* ─── LIQUID THEME × AGE ─── */
+
+:root[data-theme="liquid"][data-age-tone="youth"] h2 {
+  background: linear-gradient(110deg,
+    rgba(255,255,255,0.95),
+    rgba(127, 217, 207, 0.9)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+:root[data-theme="liquid"][data-age-tone="youth"] .skill-chip {
+  border-color: rgba(255,255,255,0.22);
+  background: rgba(255,255,255,0.16);
+}
+
+:root[data-theme="liquid"][data-age-tone="professional"] {
+  --card-radius: 16px;
+}
+
+:root[data-theme="liquid"][data-age-tone="professional"] .skill-chip {
+  border-radius: 8px;
+  background: rgba(255,255,255,0.12);
+}
+
+/* ─── BALANCED TONE (25-34) — default, no changes needed but anchors ─── */
+:root[data-age-tone="balanced"] {
+  --card-radius: 18px;
+}
+
+/* ─── GLOBAL SECTION HEAD ─── */
+.section-head {
+  margin-bottom: clamp(1.4rem, 2.8vw, 2.2rem);
+}
+
+.section-head h2 {
+  font-size: clamp(1.65rem, 4vw, 2.55rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+/* ─── ENHANCED RESPONSIVE STRUCTURE ─── */
+
+/* --- Universal fluid container --- */
+.wrapper {
+  width: min(1220px, 92vw);
+}
+
+/* All new component grids — unified responsive behavior */
+.skills-bento,
+.projects-grid,
+.achievements-grid,
+.certs-grid {
+  margin-top: 0;
+}
+
+/* --- Tablet landscape (901px–1180px) --- */
+@media (min-width: 901px) and (max-width: 1180px) {
+  .skills-bento {
+    grid-template-columns: repeat(3, 272px);
+  }
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .certs-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .achievements-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* --- Tablet portrait (641px–900px) - already handled above for skills/certs, extending --- */
+@media (min-width: 641px) and (max-width: 900px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+  .achievements-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .footer-inner {
+    grid-template-columns: 1fr;
+  }
+  .section-head h2 {
+    font-size: clamp(1.5rem, 4.5vw, 2.1rem);
+  }
+  .project-card__footer {
+    flex-wrap: wrap;
+  }
+}
+
+/* --- Mobile (max 640px) --- */
+@media (max-width: 640px) {
+  .skills-bento {
+    grid-template-columns: 1fr;
+    justify-content: center;
+  }
+
+  .skills-group {
+    width: min(100%, 272px);
+    min-height: 220px;
+    margin-inline: auto;
+  }
+
+  .skills-group--wide {
+    width: 100%;
+    min-height: auto;
+  }
+
+  .achievement-card,
+  .cert-card {
+    height: auto;
+    min-height: 0;
+  }
+
+  /* Section head */
+  .section-head {
+    margin-bottom: 1.2rem;
+  }
+  .section-head h2 {
+    font-size: clamp(1.4rem, 6vw, 2rem);
+  }
+
+  /* Skill chips — smaller on mobile */
+  .skill-chip {
+    font-size: 0.74rem;
+    padding: 0.28rem 0.64rem;
+  }
+
+  /* Project card footer buttons — full width stacked */
+  .project-card__footer {
+    flex-direction: column;
+  }
+  .project-card__footer .btn {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
+  /* Achievement cards — slightly more compact icon */
+  .achievement-icon {
+    font-size: 1.7rem;
+  }
+
+  /* Footer */
+  .footer-links {
+    grid-template-columns: repeat(3, max-content);
+    gap: 0.5rem 0.9rem;
+  }
+
+  /* Floating CTA */
+  .floating-cta {
+    bottom: 4rem;
+    right: 0.8rem;
+  }
+
+  /* Section spacing */
+  :root {
+    --space-section: clamp(2rem, 5vw, 3rem);
+  }
+}
+
+/* --- Very small mobile (< 380px) --- */
+@media (max-width: 379px) {
+  .skills-bento {
+    grid-template-columns: 1fr;
+  }
+  .certs-grid {
+    grid-template-columns: 1fr;
+  }
+  .achievements-grid {
+    grid-template-columns: 1fr;
+  }
+  .footer-links {
+    grid-template-columns: repeat(2, max-content);
+  }
+  .section-head h2 {
+    font-size: 1.35rem;
+  }
+}
+
+/* ─── REDUCED MOTION — disable age-tone animations ─── */
+@media (prefers-reduced-motion: reduce) {
+  :root[data-age-tone="youth"] h2,
+  :root[data-age-tone="youth"] .footer-name,
+  :root[data-age-tone="youth"] .project-card__body h3 {
+    -webkit-text-fill-color: unset;
+    background: none;
+    color: var(--text);
+  }
+  :root[data-age-tone="youth"] .skill-chip--learning {
+    animation: none;
+  }
+}
+
+/* ============================================================
+   === BACKGROUND GEOMETRY & ANIMATION SYSTEM ===
+   ============================================================ */
+
+/* Container — fixed, full viewport, pointer-events off */
+.bg-geometry {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* ─── Floating Orbs ─── */
+.bg-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(72px);
+  will-change: transform, opacity;
+}
+
+.bg-orb--1 {
+  width: clamp(280px, 38vw, 560px);
+  height: clamp(280px, 38vw, 560px);
+  top: -8%;
+  left: -10%;
+  background: radial-gradient(circle,
+    color-mix(in srgb, var(--accent) 14%, transparent),
+    transparent 70%
+  );
+  animation: orbFloat1 28s ease-in-out infinite;
+  opacity: 0.7;
+}
+
+.bg-orb--2 {
+  width: clamp(220px, 30vw, 440px);
+  height: clamp(220px, 30vw, 440px);
+  top: 20%;
+  right: -8%;
+  background: radial-gradient(circle,
+    color-mix(in srgb, var(--accent-2) 12%, transparent),
+    transparent 70%
+  );
+  animation: orbFloat2 22s ease-in-out infinite;
+  animation-delay: -7s;
+  opacity: 0.65;
+}
+
+.bg-orb--3 {
+  width: clamp(160px, 22vw, 340px);
+  height: clamp(160px, 22vw, 340px);
+  top: 55%;
+  left: 30%;
+  background: radial-gradient(circle,
+    color-mix(in srgb, var(--accent) 9%, transparent),
+    transparent 68%
+  );
+  animation: orbFloat3 34s ease-in-out infinite;
+  animation-delay: -14s;
+  opacity: 0.55;
+}
+
+.bg-orb--4 {
+  width: clamp(200px, 26vw, 380px);
+  height: clamp(200px, 26vw, 380px);
+  bottom: -5%;
+  right: 20%;
+  background: radial-gradient(circle,
+    color-mix(in srgb, var(--accent-2) 11%, transparent),
+    transparent 70%
+  );
+  animation: orbFloat4 25s ease-in-out infinite;
+  animation-delay: -4s;
+  opacity: 0.6;
+}
+
+.bg-orb--5 {
+  width: clamp(120px, 16vw, 260px);
+  height: clamp(120px, 16vw, 260px);
+  top: 38%;
+  left: -5%;
+  background: radial-gradient(circle,
+    color-mix(in srgb, var(--accent) 10%, transparent),
+    transparent 65%
+  );
+  animation: orbFloat2 18s ease-in-out infinite;
+  animation-delay: -10s;
+  opacity: 0.5;
+}
+
+/* ─── Geometric Lines ─── */
+.bg-line {
+  position: absolute;
+  background: linear-gradient(90deg,
+    transparent,
+    color-mix(in srgb, var(--accent) 16%, transparent) 40%,
+    color-mix(in srgb, var(--accent-2) 12%, transparent) 60%,
+    transparent
+  );
+  height: 1px;
+  will-change: transform, opacity;
+}
+
+.bg-line--1 {
+  width: clamp(300px, 55vw, 800px);
+  top: 28%;
+  left: -10%;
+  transform: rotate(-12deg);
+  opacity: 0.45;
+  animation: lineDrift1 32s ease-in-out infinite;
+}
+
+.bg-line--2 {
+  width: clamp(200px, 40vw, 600px);
+  top: 68%;
+  right: -8%;
+  transform: rotate(8deg);
+  opacity: 0.35;
+  animation: lineDrift2 26s ease-in-out infinite;
+  animation-delay: -12s;
+}
+
+/* ─── Dot Grid ─── */
+.bg-dot-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle, color-mix(in srgb, var(--accent) 22%, transparent) 1px, transparent 1px);
+  background-size: 48px 48px;
+  opacity: 0.055;
+  animation: dotGridDrift 60s linear infinite;
+  will-change: background-position;
+}
+
+/* ─── Keyframes ─── */
+
+@keyframes orbFloat1 {
+  0%   { transform: translate(0, 0) scale(1); }
+  25%  { transform: translate(4%, 6%) scale(1.06); }
+  50%  { transform: translate(8%, 2%) scale(0.95); }
+  75%  { transform: translate(3%, 8%) scale(1.04); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+@keyframes orbFloat2 {
+  0%   { transform: translate(0, 0) scale(1); }
+  33%  { transform: translate(-6%, 5%) scale(1.08); }
+  66%  { transform: translate(4%, 9%) scale(0.94); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+@keyframes orbFloat3 {
+  0%   { transform: translate(0, 0) scale(1); }
+  20%  { transform: translate(5%, -4%) scale(1.05); }
+  50%  { transform: translate(-3%, 6%) scale(0.96); }
+  80%  { transform: translate(4%, -2%) scale(1.03); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+@keyframes orbFloat4 {
+  0%   { transform: translate(0, 0) scale(1); }
+  40%  { transform: translate(-5%, -6%) scale(1.07); }
+  70%  { transform: translate(5%, -3%) scale(0.93); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+@keyframes lineDrift1 {
+  0%   { transform: rotate(-12deg) translateX(0); opacity: 0.45; }
+  50%  { transform: rotate(-10deg) translateX(3%); opacity: 0.28; }
+  100% { transform: rotate(-12deg) translateX(0); opacity: 0.45; }
+}
+
+@keyframes lineDrift2 {
+  0%   { transform: rotate(8deg) translateX(0); opacity: 0.35; }
+  50%  { transform: rotate(10deg) translateX(-4%); opacity: 0.18; }
+  100% { transform: rotate(8deg) translateX(0); opacity: 0.35; }
+}
+
+@keyframes dotGridDrift {
+  0%   { background-position: 0 0; }
+  100% { background-position: 48px 48px; }
+}
+
+/* ─── Theme adjustments for bg-geometry ─── */
+
+/* Light theme — very subtle, almost invisible */
+:root[data-theme="light"] .bg-orb--1,
+:root[data-theme="light"] .bg-orb--2,
+:root[data-theme="light"] .bg-orb--3,
+:root[data-theme="light"] .bg-orb--4,
+:root[data-theme="light"] .bg-orb--5 {
+  opacity: 0.3;
+  filter: blur(90px);
+}
+:root[data-theme="light"] .bg-dot-grid {
+  opacity: 0.028;
+}
+:root[data-theme="light"] .bg-line--1,
+:root[data-theme="light"] .bg-line--2 {
+  opacity: 0.18;
+}
+
+/* Neon theme — slightly more vivid */
+:root[data-theme="neon"] .bg-orb--1,
+:root[data-theme="neon"] .bg-orb--2 {
+  opacity: 0.85;
+  filter: blur(60px);
+}
+:root[data-theme="neon"] .bg-dot-grid {
+  opacity: 0.08;
+}
+
+/* Liquid theme — warm glow */
+:root[data-theme="liquid"] .bg-orb {
+  filter: blur(80px);
+}
+:root[data-theme="liquid"] .bg-dot-grid {
+  opacity: 0.04;
+}
+
+/* Female theme — softer orbs */
+:root[data-audience="female"] .bg-orb--1,
+:root[data-audience="female"] .bg-orb--3 {
+  background: radial-gradient(circle,
+    color-mix(in srgb, var(--accent) 16%, transparent),
+    transparent 70%
+  );
+}
+
+/* Youth — slightly more energetic animation */
+:root[data-age-tone="youth"] .bg-orb {
+  animation-duration: calc(var(--d, 1) * 0.78);
+}
+:root[data-age-tone="youth"] .bg-dot-grid {
+  opacity: 0.07;
+}
+
+/* Professional — nearly invisible geometry */
+:root[data-age-tone="professional"] .bg-orb {
+  opacity: 0.35;
+  filter: blur(100px);
+}
+:root[data-age-tone="professional"] .bg-dot-grid {
+  opacity: 0.03;
+}
+:root[data-age-tone="professional"] .bg-line--1,
+:root[data-age-tone="professional"] .bg-line--2 {
+  opacity: 0.18;
+}
+
+/* ─── Section Geometry Accents ─── */
+
+/* Subtle top accent gradient on each section */
+main section + section {
+  position: relative;
+}
+
+main section + section::before {
+  content: "";
+  display: block;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent,
+    color-mix(in srgb, var(--accent) 22%, transparent) 30%,
+    color-mix(in srgb, var(--accent-2) 18%, transparent) 70%,
+    transparent
+  );
+  margin-bottom: var(--space-section);
+  opacity: 0.6;
+}
+
+/* ─── HISAB-H WIP Progress Bar ─── */
+
+.project-wip {
+  padding: 0.7rem clamp(1rem, 2vw, 1.35rem);
+  border-top: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  background: color-mix(in srgb, #f59e0b 5%, transparent);
+}
+
+.project-wip__bar {
+  flex: 1;
+  height: 5px;
+  border-radius: 999px;
+  background: color-mix(in srgb, #f59e0b 16%, var(--line));
+  overflow: hidden;
+}
+
+.project-wip__fill {
+  height: 100%;
+  width: var(--wip-progress, 55%);
+  border-radius: 999px;
+  background: linear-gradient(90deg, #f59e0b, #fbbf24);
+  box-shadow: 0 0 8px rgba(245, 158, 11, 0.55);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Shimmer sweep on the progress fill */
+.project-wip__fill::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(255,255,255,0.36) 45%,
+    rgba(255,255,255,0.5) 55%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: wipShimmer 2.2s ease-in-out infinite;
+}
+
+.project-wip__label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #f59e0b;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+  opacity: 0.88;
+}
+
+@keyframes wipShimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ─── "In Dev" badge pulse dot ─── */
+
+.project-status--dev {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.38rem;
+}
+
+.dev-pulse {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #f59e0b;
+  box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.6);
+  animation: devPulse 1.8s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes devPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7); }
+  60%  { box-shadow: 0 0 0 6px rgba(245, 158, 11, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
+}
+
+/* ─── Reduced motion: disable all background animations ─── */
+@media (prefers-reduced-motion: reduce) {
+  .bg-orb,
+  .bg-line,
+  .bg-dot-grid,
+  .project-wip__fill::after,
+  .dev-pulse {
+    animation: none;
+  }
+  .bg-orb {
+    opacity: 0.2;
+  }
 }
