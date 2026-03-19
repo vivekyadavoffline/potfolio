@@ -220,4 +220,4 @@ Class XII: **92.6%** · Class X: **89%**
 
 ---
 
-*Built by **Vivek Yadav** · HTML, CSS & JavaScript · No frameworks, no dependencies*
+*Built by **Vivek Yadav** · HTML, CSS & JavaScript · No frameworks, no dependencies but only for now*
