@@ -641,12 +641,13 @@
   line-height: 0.95;
   letter-spacing: -0.04em;
   min-height: 0;
-  max-width: 11ch;
+  max-width: 100%;
+  width: 100%;
   overflow: visible;
   text-wrap: balance;
   white-space: normal;
   word-break: keep-all;
-  overflow-wrap: normal;
+  overflow-wrap: anywhere;
   hyphens: none;
 }
 
@@ -1544,6 +1545,7 @@ body.gate-open {
 }
 
 h1 {
+  width: 100%;
   line-height: 1.1;
   font-family: "Space Grotesk", "Manrope", sans-serif;
 }
@@ -1564,8 +1566,9 @@ h1 {
   line-height: 1.06;
   min-height: 6.7rem;
   white-space: normal;
-  overflow-wrap: normal;
-  max-width: 11ch;
+  overflow-wrap: anywhere;
+  max-width: none;
+  width: 100%;
 }
 
 .hero-meta {
@@ -2786,7 +2789,7 @@ h2 {
 }
 
 .footer-mark::before {
-  content: "\00A9 Vivek Yadav";
+  content: "\00A9 Vivek";
   font-size: 0.92rem;
   font-weight: 800;
   letter-spacing: 0.04em;
@@ -3313,6 +3316,19 @@ h2 {
     gap: 0.6rem;
   }
 
+  h1,
+  .role-line {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .role-line {
+    font-size: clamp(2.2rem, 10vw, 3rem);
+    line-height: 1.08;
+    min-height: clamp(7rem, 24vw, 9.5rem);
+    text-wrap: balance;
+  }
+
   .hero-badges {
     gap: 0.48rem;
     justify-content: center;
@@ -3509,7 +3525,7 @@ h2 {
   :root[data-audience="female"] .role-line {
     font-size: clamp(2.7rem, 9vw, 4rem);
     min-height: 0;
-    max-width: 10.5ch;
+    max-width: 100%;
     margin-inline: auto;
   }
 }
@@ -4761,6 +4777,31 @@ h2 {
 
 /* --- Mobile (max 640px) --- */
 @media (max-width: 640px) {
+  .hero-stats {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 9.5rem), 1fr));
+    gap: 0.65rem;
+    width: 100%;
+    max-width: none;
+    min-height: 0;
+  }
+
+  .hero-stat {
+    min-height: clamp(4.4rem, 18vw, 5.2rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0.78rem 0.82rem;
+  }
+
+  .hero-stat strong {
+    font-size: clamp(1.05rem, 4.8vw, 1.18rem);
+  }
+
+  .hero-stat span {
+    font-size: clamp(0.72rem, 3.2vw, 0.8rem);
+    line-height: 1.35;
+  }
+
   .skills-bento {
     grid-template-columns: 1fr;
     justify-content: center;
@@ -4832,6 +4873,15 @@ h2 {
 
 /* --- Very small mobile (< 380px) --- */
 @media (max-width: 379px) {
+  .hero-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-stat {
+    min-height: 0;
+    padding: 0.72rem 0.76rem;
+  }
+
   .skills-bento {
     grid-template-columns: 1fr;
   }

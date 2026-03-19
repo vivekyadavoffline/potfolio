@@ -109,7 +109,7 @@ const ageExperienceMap = {
   '13-17': {
     pill: 'Explore coding, creativity, and beginner-friendly projects',
     greeting: 'Hey there, welcome!',
-    intro: "I'm Vivek",
+    intro: "I'm Vivek Yadav",
     meta: 'Student developer | Learning and building every day',
     summary: 'I create simple and fun projects that help beginners understand how websites work. My goal is to make coding interesting through visual interfaces and hands-on experimentation.',
     badges: ['Beginner Friendly', 'Creative Learning', 'Explore Coding'],
@@ -124,7 +124,7 @@ const ageExperienceMap = {
   '18-24': {
     pill: 'Open to internships, collaborations, and career growth',
     greeting: 'Hello there, welcome to my portfolio.',
-    intro: "I'm Vivek",
+    intro: "I'm Vivek Yadav",
     meta: 'New Delhi, India | Computer Science student',
     summary: 'I focus on building modern web interfaces, improving problem-solving through C++, and developing practical projects that strengthen my portfolio for internships and real development experience.',
     badges: ['Career Focused', 'Frontend + Backend', 'Portfolio Growth'],
@@ -139,7 +139,7 @@ const ageExperienceMap = {
   '25-34': {
     pill: 'Modern web development with practical project execution',
     greeting: 'Hello, and thanks for visiting.',
-    intro: "I'm Vivek",
+    intro: "I'm Vivek Yadav",
     meta: 'Web developer | Building practical web solutions',
     summary: 'My focus is on writing clean code, developing responsive web interfaces, and learning full-stack technologies that support real product development.',
     badges: ['Execution Focused', 'Modern Web Stack', 'Problem Solver'],
@@ -154,7 +154,7 @@ const ageExperienceMap = {
   '35-44': {
     pill: 'Structured portfolio highlighting technical growth and discipline',
     greeting: 'Welcome, and thank you for reviewing my portfolio.',
-    intro: "I'm Vivek",
+    intro: "I'm Vivek Yadav",
     meta: 'Developer portfolio | Technical learning journey',
     summary: 'This portfolio presents my academic achievements, technical learning path, and web development projects built while strengthening my software engineering fundamentals.',
     badges: ['Structured Profile', 'Reliable Foundation', 'Consistent Learning'],
@@ -169,7 +169,7 @@ const ageExperienceMap = {
   '45+': {
     pill: 'Clear and concise overview of skills, projects, and development progress',
     greeting: 'Welcome. Thank you for taking the time to review my profile.',
-    intro: "I'm Vivek",
+    intro: "I'm Vivek Yadav",
     meta: 'Computer Science student | Developer portfolio',
     summary: 'This portfolio highlights my academic performance, practical development work, and continued effort to build strong technical foundations in modern web technologies.',
     badges: ['Professional Overview', 'Technical Focus', 'Steady Growth'],
