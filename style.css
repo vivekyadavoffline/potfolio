@@ -701,10 +701,6 @@
   min-height: 100%;
 }
 
-:root[data-audience="female"]:not([data-female-portrait="visible"]) .hero-media {
-  display: none;
-}
-
 :root[data-audience="female"] .hero-media::before {
   width: min(20.6rem, 55vw);
   left: 50%;
@@ -1803,6 +1799,10 @@ h1 {
   overflow: visible;
   transform: none;
   pointer-events: auto;
+}
+
+:root[data-female-portrait="hidden"] .hero-media {
+  display: none;
 }
 
 .hero-media::before {
