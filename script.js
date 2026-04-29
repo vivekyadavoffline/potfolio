@@ -130,7 +130,7 @@ const ageExperienceMap = {
     badges: ['Career Focused', 'Frontend + Backend', 'Portfolio Growth'],
     stats: [
       ['8.57', 'Current CGPA'],
-      ['2+', 'Deployed projects'],
+      ['3+', 'Deployed projects'],
       ['7x', 'District chess champion']
     ],
     caption: 'Designed for students, peers, and recruiters exploring my early career work.'
@@ -144,7 +144,7 @@ const ageExperienceMap = {
     summary: 'My focus is on writing clean code, developing responsive web interfaces, and learning full-stack technologies that support real product development.',
     badges: ['Execution Focused', 'Modern Web Stack', 'Problem Solver'],
     stats: [
-      ['2+', 'Live web projects'],
+      ['3+', 'Live web projects'],
       ['Frontend', 'Core expertise'],
       ['Full Stack', 'Learning direction']
     ],
@@ -160,7 +160,7 @@ const ageExperienceMap = {
     badges: ['Structured Profile', 'Reliable Foundation', 'Consistent Learning'],
     stats: [
       ['8.57', 'Academic CGPA'],
-      ['2+', 'Published projects'],
+      ['3+', 'Published projects'],
       ['Ongoing', 'Skill development']
     ],
     caption: 'A structured view of my progress in web development and software engineering.'
@@ -175,7 +175,7 @@ const ageExperienceMap = {
     badges: ['Professional Overview', 'Technical Focus', 'Steady Growth'],
     stats: [
       ['8.57', 'Academic standing'],
-      ['2+', 'Portfolio projects'],
+      ['3+', 'Portfolio projects'],
       ['Long-Term', 'Learning mindset']
     ],
     caption: 'A concise summary of my skills, projects, and development journey.'
@@ -448,6 +448,30 @@ const applyTheme = (theme, persist = true) => {
   }
 };
 
+// --- Mobile Theme Cycle ---
+const mobileThemeBtn = document.querySelector('#mobile-theme-btn');
+if (mobileThemeBtn) {
+  mobileThemeBtn.addEventListener('click', () => {
+    const currentTheme = document.documentElement.dataset.theme || 'dark';
+    const currentIndex = supportedThemes.indexOf(currentTheme);
+    const nextIndex = (currentIndex + 1) % supportedThemes.length;
+    const nextTheme = supportedThemes[nextIndex];
+    applyTheme(nextTheme);
+    playUiSound('theme');
+  });
+}
+
+const mobilePersonBtn = document.querySelector('#mobile-person-btn');
+if (mobilePersonBtn) {
+  mobilePersonBtn.addEventListener('click', () => {
+    if (audienceGate) {
+      audienceGate.classList.add('is-visible');
+      playUiSound('menu-open');
+    }
+  });
+}
+
+
 let initialTheme = 'dark';
 let savedAudience = '';
 let savedAgeRange = '';
@@ -460,6 +484,11 @@ try {
   savedAgeRange = localStorage.getItem(ageKey) || '';
 } catch (_err) {
   // Ignore read errors and use default theme.
+}
+
+if (!savedAudience || !savedAgeRange) {
+  savedAudience = 'male';
+  savedAgeRange = '18-24';
 }
 
 applyTheme(initialTheme, false);
@@ -749,9 +778,6 @@ const updateScrollUi = () => {
 window.addEventListener('scroll', updateScrollUi, { passive: true });
 updateScrollUi();
 updateMenuScrim(false);
-if (!savedAudience || !savedAgeRange) {
-  openAudienceGate();
-}
 
 const syncNavFromHash = () => {
   const currentHash = window.location.hash.replace('#', '');
@@ -1008,3 +1034,143 @@ document.querySelectorAll('.skill-chip').forEach((chip) => {
     playUiSound('hover');
   });
 });
+
+// --- Mouse Glow Interaction ---
+const handlePanelGlow = (e) => {
+  const panels = document.querySelectorAll('.panel');
+  panels.forEach(panel => {
+    const rect = panel.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    panel.style.setProperty('--mouse-x', `${x}px`);
+    panel.style.setProperty('--mouse-y', `${y}px`);
+  });
+};
+
+window.addEventListener('mousemove', handlePanelGlow);
+
+// --- Magnetic Buttons ---
+const magneticBtns = document.querySelectorAll('.btn-primary, .btn-outline');
+magneticBtns.forEach(btn => {
+  btn.addEventListener('mousemove', (e) => {
+    const rect = btn.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px) scale(1.02)`;
+  });
+  
+  btn.addEventListener('mouseleave', () => {
+    btn.style.transform = '';
+  });
+});
+
+// --- Custom Pro Cursor ---
+const cursor = document.getElementById('custom-cursor');
+const cursorFollower = document.getElementById('custom-cursor-follower');
+
+if (cursor && cursorFollower) {
+  let mouseX = 0, mouseY = 0;
+  let followerX = 0, followerY = 0;
+  
+  window.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    
+    // Immediate cursor follow
+    cursor.style.left = `${mouseX}px`;
+    cursor.style.top = `${mouseY}px`;
+  });
+  
+  // Smooth follower animation
+  const animateFollower = () => {
+    followerX += (mouseX - followerX) * 0.15;
+    followerY += (mouseY - followerY) * 0.15;
+    
+    cursorFollower.style.left = `${followerX}px`;
+    cursorFollower.style.top = `${followerY}px`;
+    
+    requestAnimationFrame(animateFollower);
+  };
+  
+  animateFollower();
+  
+  // Hover effects on interactive elements
+  const interactiveElements = document.querySelectorAll('a, button, .age-chip, .theme-btn, .sound-toggle, .nav-link, .hero-link, .social-link, .project-card, .info-card');
+  
+  interactiveElements.forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.classList.add('hovering');
+      cursorFollower.classList.add('hovering');
+    });
+    
+    el.addEventListener('mouseleave', () => {
+      cursor.classList.remove('hovering');
+      cursorFollower.classList.remove('hovering');
+    });
+  });
+}
+
+// --- 3D Tilt Effect on Cards ---
+const tiltCards = document.querySelectorAll('.project-card, .info-card, .achievement-card');
+tiltCards.forEach(card => {
+  card.addEventListener('mousemove', (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    
+    const rotateX = ((y - centerY) / centerY) * -8;
+    const rotateY = ((x - centerX) / centerX) * 8;
+    
+    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02) translateY(-10px)`;
+    card.style.transition = 'transform 0.1s ease';
+  });
+  
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = '';
+    card.style.transition = 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
+  });
+});
+
+// --- Mobile Navigation Logic ---
+const mobileNavLinks = document.querySelectorAll('.mobile-nav__link');
+const sections = document.querySelectorAll('section[id]');
+
+const updateMobileNav = () => {
+  let currentSectionId = '';
+  const scrollPos = window.scrollY + 100;
+
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop;
+    const sectionHeight = section.offsetHeight;
+    if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+      currentSectionId = section.getAttribute('id');
+    }
+  });
+
+  mobileNavLinks.forEach(link => {
+    const linkHref = link.getAttribute('href').substring(1);
+    link.classList.toggle('active', linkHref === currentSectionId);
+  });
+};
+
+if (mobileNavLinks.length > 0) {
+  window.addEventListener('scroll', updateMobileNav);
+  
+  mobileNavLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = link.getAttribute('href');
+      const targetSection = document.querySelector(targetId);
+      if (targetSection) {
+        window.scrollTo({
+          top: targetSection.offsetTop - 60,
+          behavior: 'smooth'
+        });
+      }
+      playUiSound('tap');
+    });
+  });
+}

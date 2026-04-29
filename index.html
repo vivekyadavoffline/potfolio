@@ -17,7 +17,7 @@
   <a class="skip-link" href="#main-content">Skip to content</a>
   <div class="scroll-progress" id="scroll-progress"></div>
   <div class="page-glow"></div>
-  <!-- Background animated geometry -->
+
   <div class="bg-geometry" aria-hidden="true">
     <span class="bg-orb bg-orb--1"></span>
     <span class="bg-orb bg-orb--2"></span>
@@ -55,6 +55,14 @@
 
   <header class="topbar wrapper" id="top">
     <p class="brand">Vivek</p>
+    <div class="mobile-utils">
+      <button id="mobile-person-btn" aria-label="Personalize view">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+      </button>
+      <button id="mobile-theme-btn" aria-label="Toggle theme">
+        <svg viewBox="0 0 24 24" width="18" height="18" class="sun-icon"><path d="M12 7a5 5 0 100 10 5 5 0 000-10zM2 13h2a1 1 0 100-2H2a1 1 0 100 2zm18 0h2a1 1 0 100-2h-2a1 1 0 100 2zM11 2v2a1 1 0 102 0V2a1 1 0 10-2 0zm0 18v2a1 1 0 102 0v-2a1 1 0 10-2 0zM5.99 4.58a1 1 0 10-1.41 1.41l1.41 1.41a1 1 0 101.41-1.41L5.99 4.58zm12.02 12.02a1 1 0 10-1.41 1.41l1.41 1.41a1 1 0 101.41-1.41l-1.41-1.41zm-12.02 0l-1.41 1.41a1 1 0 101.41 1.41l1.41-1.41a1 1 0 10-1.41-1.41zm12.02-12.02l1.41-1.41a1 1 0 10-1.41-1.41l-1.41 1.41a1 1 0 101.41 1.41z"/></svg>
+      </button>
+    </div>
     <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="site-nav">
       <span class="menu-toggle__text">Menu</span>
       <span class="menu-toggle__icon" aria-hidden="true">
@@ -80,14 +88,11 @@
       <div class="nav-tabs">
         <span class="nav-slider" id="nav-slider" aria-hidden="true"></span>
         <a class="nav-link active" href="#home">Home</a>
-        <a class="nav-link" href="#about">Details</a>
-        <a class="nav-link" href="#education">Education</a>
         <a class="nav-link" href="#skills">Skills</a>
-        <a class="nav-link" href="#projects">Projects</a>
-        <a class="nav-link" href="#experience">Experience</a>
-        <a class="nav-link" href="#achievements">Achievements</a>
-        <a class="nav-link" href="#certifications">Certifications</a>
-        <a class="nav-link" href="#profiles">Profiles</a>
+        <a class="nav-link" href="#projects">Work</a>
+        <a class="nav-link" href="#about">About</a>
+        <a class="nav-link" href="#recognition">Recognition</a>
+        <a class="nav-link" href="#profiles">Connect</a>
       </div>
     </nav>
   </header>
@@ -99,14 +104,14 @@
           <div class="hero-copy">
             <p class="section-kicker">Portfolio</p>
             <p class="availability-pill" id="availability-pill">Open to internships and collaborative projects</p>
-            <p class="greeting" id="hero-greeting">Hello.</p>
-            <p class="intro-line" id="hero-intro-line"><span class="intro-accent"></span>I'm Vivek Yadav</p>
+            <p class="greeting" id="hero-greeting">Hello there, welcome.</p>
+            <p class="intro-line" id="hero-intro-line">I'm Vivek Yadav</p>
             <h1>
               <span class="role-line" id="dynamic-role">Software Developer</span>
             </h1>
-            <p class="hero-meta" id="hero-meta">New Delhi, India</p>
+            <p class="hero-meta" id="hero-meta">New Delhi, India &bull; Computer Science Student</p>
             <p class="hero-summary" id="hero-summary">
-              I build polished front-end interfaces, strengthen problem-solving with C++, and keep expanding into backend fundamentals through project-based learning.
+              I build modern web interfaces and solve complex problems with C++, focusing on creating practical projects that deliver real value.
             </p>
           </div>
 
@@ -134,8 +139,8 @@
               <span id="hero-stat-label-1">Current CGPA</span>
             </article>
             <article class="hero-stat">
-              <strong id="hero-stat-value-2">2+</strong>
-              <span id="hero-stat-label-2">Deployed UI projects</span>
+              <strong id="hero-stat-value-2">3+</strong>
+              <span id="hero-stat-label-2">Deployed full-stack projects</span>
             </article>
             <article class="hero-stat">
               <strong id="hero-stat-value-3">7x</strong>
@@ -145,8 +150,8 @@
 
           <div class="hero-actions">
             <div class="cta-primary-block">
-              <button class="btn btn-primary btn-wide modal-trigger" type="button" data-social-title="Featured Project" data-social-handle="Spotify Modified Clone" data-social-description="Responsive music player UI with playback controls, progress tracking, and DOM-driven interactions." data-social-url="https://vivekyadavoffline.github.io/spotify-clone/" data-social-action="Open Live Project">View Live Project</button>
-              <p class="cta-caption" id="cta-caption">Featured build: Spotify clone with responsive UI, playback controls, and DOM-driven interactions.</p>
+              <button class="btn btn-primary btn-wide modal-trigger" type="button" data-social-title="Featured Project" data-social-handle="HISAB-H — Smart Credit System" data-social-description="A full-stack credit management platform for retail shops. Frontend on Vercel, Backend on Render, powered by MySQL." data-social-url="https://hisab-h.vercel.app" data-social-action="Open Live Project">View Live Project</button>
+              <p class="cta-caption" id="cta-caption">Featured build: HISAB-H — Smart credit management system with AI trust scoring and automated billing.</p>
               <button class="btn btn-outline female-portrait-toggle" id="female-portrait-toggle" type="button" aria-pressed="false">Show Profile Preview</button>
             </div>
             <div class="cta-stack">
@@ -185,125 +190,90 @@
       </div>
     </section>
 
-    <section id="about" class="info wrapper reveal">
-      <div class="section-head">
-        <p class="section-kicker">Contact</p>
-        <h2>Basic Details</h2>
-      </div>
-      <div class="info-grid">
-        <article class="info-card panel">
-          <h3>Personal Information</h3>
-          <ul class="plain-list">
-            <li><strong>Name:</strong> Vivek</li>
-            <li><strong>Gender:</strong> Male</li>
-            <li><strong>Current Location:</strong> New Delhi, India</li>
-            <li><strong>Hometown:</strong> Bhiwadi, Rajasthan</li>
-            <li><strong>Mobile:</strong> +91-8058984580</li>
-            <li><strong>Email:</strong> vivekbhiwadi704@gmail.com</li>
-            <li><strong>Focus:</strong> Frontend development, JavaScript, React.js, Node.js, MySQL</li>
-          </ul>
-        </article>
-
-        <article class="info-card panel">
-          <h3>Languages Known</h3>
-          <ul class="plain-list">
-            <li><strong>English:</strong> Read &amp; Write</li>
-            <li><strong>Hindi:</strong> Read, Write &amp; Speak</li>
-          </ul>
-        </article>
-
-        <article class="info-card panel">
-          <h3>Profile Snapshot</h3>
-          <p>Self-driven learner focused on practical web development, structured coding, and real-world implementation.</p>
-          <div class="meter"><span style="--value:88%"></span></div>
-        </article>
-      </div>
-    </section>
-
-    <section id="education" class="info wrapper reveal">
-      <div class="section-head">
-        <p class="section-kicker">Academics</p>
-        <h2>Education</h2>
-      </div>
-      <div class="info-grid">
-        <article class="info-card panel">
-          <h3>B.Tech - Computer Science Engineering</h3>
-          <p>Vivekananda Institute of Professional Studies - Technical Campus (VIPS-TC)</p>
-          <p>Guru Gobind Singh Indraprastha University (GGSIPU)</p>
-          <p><strong>CGPA:</strong> 8.57 / 10 (Till Semester 3)</p>
-        </article>
-
-        <article class="info-card panel">
-          <h3>Semester Performance</h3>
-          <ul class="plain-list">
-            <li>Semester 1: 8.48</li>
-            <li>Semester 2: 8.32</li>
-            <li>Semester 3: 8.92</li>
-          </ul>
-        </article>
-
-        <article class="info-card panel">
-          <h3>Schooling</h3>
-          <ul class="plain-list">
-            <li><strong>School:</strong> Euro International School</li>
-            <li><strong>Board:</strong> CBSE</li>
-            <li><strong>Class XII (2023):</strong> 92.6%</li>
-            <li><strong>Class X (2021):</strong> 89%</li>
-          </ul>
-        </article>
-      </div>
-    </section>
-
+    <!-- Technical Expertise (Refined Bento) -->
     <section id="skills" class="info wrapper reveal">
       <div class="section-head">
-        <p class="section-kicker">Stack</p>
-        <h2>Technical Skills</h2>
+        <p class="section-kicker">Toolkit</p>
+        <h2>Technical Expertise</h2>
       </div>
       <div class="skills-bento">
-        <div class="skills-group">
-          <p class="skills-group__label">Programming</p>
+        <div class="skills-group skills-group--main">
+          <p class="skills-group__label">Core Engineering</p>
           <div class="skills-chips">
             <span class="skill-chip" data-color="accent">C++</span>
-            <span class="skill-chip" data-color="orange">Java <small style="opacity:.6;font-size:.7em">(Basic)</small></span>
-          </div>
-        </div>
-        <div class="skills-group">
-          <p class="skills-group__label">Frontend</p>
-          <div class="skills-chips">
-            <span class="skill-chip" data-color="orange">HTML5</span>
-            <span class="skill-chip" data-color="blue">CSS3</span>
-            <span class="skill-chip" data-color="yellow">JavaScript</span>
-          </div>
-        </div>
-        <div class="skills-group">
-          <p class="skills-group__label">Concepts</p>
-          <div class="skills-chips">
             <span class="skill-chip" data-color="green">Data Structures</span>
             <span class="skill-chip" data-color="green">OOP</span>
+            <span class="skill-chip" data-color="orange">Java</span>
           </div>
         </div>
         <div class="skills-group">
-          <p class="skills-group__label">Tools &amp; Databases</p>
+          <p class="skills-group__label">Frontend & Design</p>
           <div class="skills-chips">
-            <span class="skill-chip" data-color="purple">Git</span>
-            <span class="skill-chip" data-color="purple">GitHub</span>
-            <span class="skill-chip" data-color="muted">VS Code</span>
-            <span class="skill-chip" data-color="muted">Postman</span>
+            <span class="skill-chip" data-color="blue">React.js</span>
+            <span class="skill-chip" data-color="blue">Next.js</span>
+            <span class="skill-chip" data-color="yellow">JavaScript</span>
+            <span class="skill-chip" data-color="orange">HTML5</span>
+            <span class="skill-chip" data-color="blue">CSS3</span>
+          </div>
+        </div>
+        <div class="skills-group">
+          <p class="skills-group__label">Backend & Infrastructure</p>
+          <div class="skills-chips">
+            <span class="skill-chip" data-color="accent">Node.js</span>
+            <span class="skill-chip" data-color="accent">Express.js</span>
             <span class="skill-chip" data-color="teal">MySQL</span>
             <span class="skill-chip" data-color="teal">MongoDB</span>
+            <span class="skill-chip" data-color="muted">Postman</span>
           </div>
         </div>
         <div class="skills-group skills-group--wide">
-          <p class="skills-group__label">Currently Learning 🚀</p>
+          <p class="skills-group__label">Focus Areas 🚀</p>
           <div class="skills-chips">
-            <span class="skill-chip skill-chip--learning" data-color="accent">JavaScript (Deep Dive)</span>
-            <span class="skill-chip skill-chip--learning" data-color="accent">API Integration</span>
-            <span class="skill-chip skill-chip--learning" data-color="accent">Node.js</span>
-            <span class="skill-chip skill-chip--learning" data-color="accent">Express.js</span>
-            <span class="skill-chip skill-chip--learning" data-color="blue">React.js</span>
-            <span class="skill-chip skill-chip--learning" data-color="blue">Next.js</span>
+            <span class="skill-chip skill-chip--learning" data-color="accent">Full-Stack Architecture</span>
+            <span class="skill-chip skill-chip--learning" data-color="accent">API Security</span>
+            <span class="skill-chip skill-chip--learning" data-color="blue">UI/UX Performance</span>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- Biography & Academics -->
+    <section id="about" class="info wrapper reveal">
+      <div class="section-head">
+        <p class="section-kicker">Journey</p>
+        <h2>Background & Education</h2>
+      </div>
+      <div class="info-grid">
+        <article class="info-card panel">
+          <div class="card-eyebrow">Profile</div>
+          <h3>The Developer</h3>
+          <p>I focus on building functional, high-performance web applications. My background in C++ strengthens my logic, while my frontend expertise ensures a polished user experience.</p>
+          <ul class="plain-list" style="margin-top: 1rem;">
+            <li><strong>Location:</strong> New Delhi</li>
+            <li><strong>Language:</strong> English & Hindi</li>
+          </ul>
+        </article>
+
+        <article class="info-card panel">
+          <div class="card-eyebrow">Academic</div>
+          <h3>B.Tech in CSE</h3>
+          <p>VIPS-TC | GGSIPU (2023 - 2027)</p>
+          <p><strong>Current CGPA: 8.57</strong></p>
+          <div class="journey-stats">
+            <span>Sem 1: 8.48</span>
+            <span>Sem 2: 8.32</span>
+            <span>Sem 3: 8.92</span>
+          </div>
+        </article>
+
+        <article class="info-card panel">
+          <div class="card-eyebrow">Foundations</div>
+          <h3>Euro International</h3>
+          <p>CBSE Board Scholar</p>
+          <p><strong>Class XII: 92.6%</strong></p>
+          <p><strong>Class X: 89%</strong></p>
+          <p style="font-size: 0.85em; opacity: 0.8;">Recipient of Euro Sportsmanship Award</p>
+        </article>
       </div>
     </section>
 
@@ -323,14 +293,14 @@
               <span class="project-badge">HTML</span>
               <span class="project-badge">CSS</span>
             </div>
-            <span class="project-status project-status--dev">
-              <span class="dev-pulse"></span>Under Development
+            <span class="project-status project-status--live">
+              Live
             </span>
           </div>
           <div class="project-card__body">
             <div class="project-card__eyebrow">⭐ Major Project — Academic &amp; Personal</div>
             <h3>HISAB-H — Smart Credit Management System</h3>
-            <p class="project-card__desc">A database-driven platform for small retail shops to replace manual khata books. Customers scan a QR code, verify identity via facial authentication, and view their outstanding balance and transaction history in real time.</p>
+            <p class="project-card__desc">A production-ready database-driven platform for small retail shops to replace manual khata books. <strong>Frontend deployed on Vercel, Backend on Render.</strong></p>
             <ul class="project-highlights">
               <li>QR code entry + facial authentication for customers</li>
               <li>View outstanding balance &amp; full transaction history</li>
@@ -343,17 +313,23 @@
           <!-- Progress ribbon -->
           <div class="project-wip">
             <div class="project-wip__bar">
-              <div class="project-wip__fill" style="--wip-progress: 55%"></div>
+              <div class="project-wip__fill" style="--wip-progress: 100%"></div>
             </div>
-            <span class="project-wip__label">Development Progress · ~55% complete</span>
+            <span class="project-wip__label">Status: Fully Deployed & Operational</span>
           </div>
           <div class="project-card__footer">
+            <button class="btn btn-primary btn-sm modal-trigger" type="button"
+              data-social-title="HISAB-H — Live"
+              data-social-handle="hisab-h.vercel.app"
+              data-social-description="Open the live HISAB-H smart credit management platform."
+              data-social-url="https://hisab-h.vercel.app"
+              data-social-action="View Live">View Live ↗</button>
             <button class="btn btn-outline btn-sm modal-trigger" type="button"
               data-social-title="GitHub — HISAB-H"
               data-social-handle="@vivekyadavoffline"
               data-social-description="Browse the HISAB-H credit management system source code on GitHub."
               data-social-url="https://github.com/vivekyadavoffline"
-              data-social-action="Open GitHub">GitHub ↗</button>
+              data-social-action="Open GitHub">GitHub</button>
           </div>
         </article>
 
@@ -423,148 +399,62 @@
       </div>
     </section>
 
-    <section id="experience" class="info wrapper reveal">
+    <!-- Recognition & Honors -->
+    <section id="recognition" class="info wrapper reveal">
       <div class="section-head">
-        <p class="section-kicker">Exposure</p>
-        <h2>Experience</h2>
+        <p class="section-kicker">Validation</p>
+        <h2>Honors & Certifications</h2>
       </div>
-      <div class="info-grid">
-        <article class="info-card panel">
-          <h3>Industrial Visit - Microsoft India Development Center (IDC)</h3>
-          <ul class="plain-list">
-            <li>Exposure to real-world software engineering practices</li>
-            <li>Learned about large-scale product lifecycle</li>
-          </ul>
-        </article>
-      </div>
-    </section>
+      <div class="recognition-layout">
+        <div class="recognition-group">
+          <p class="group-label">Major Achievements</p>
+          <div class="achievements-grid">
+            <article class="achievement-card panel">
+              <span class="achievement-icon">♟️</span>
+              <div>
+                <strong>Chess Champion</strong>
+                <p>7× District Winner | State & National Representative</p>
+              </div>
+            </article>
+            <article class="achievement-card panel">
+              <span class="achievement-icon">🏢</span>
+              <div>
+                <strong>Microsoft IDC</strong>
+                <p>Industrial Exposure - Software engineering & lifecycle</p>
+              </div>
+            </article>
+          </div>
+        </div>
 
-    <section id="achievements" class="info wrapper reveal">
-      <div class="section-head">
-        <p class="section-kicker">Highlights</p>
-        <h2>Achievements</h2>
-      </div>
-      <div class="achievements-grid">
-        <article class="achievement-card panel">
-          <span class="achievement-icon" aria-hidden="true">♟️</span>
-          <div>
-            <strong class="achievement-title">7× District Chess Champion</strong>
-            <p class="achievement-sub">Rewari District — 7 consecutive titles</p>
+        <div class="recognition-group">
+          <p class="group-label">Professional Credentials</p>
+          <div class="certs-grid">
+            <div class="cert-item">
+              <strong>Google Cloud</strong>
+              <p>Generative AI Foundations</p>
+            </div>
+            <div class="cert-item">
+              <strong>Cisco</strong>
+              <p>Cybersecurity Fundamentals</p>
+            </div>
+            <div class="cert-item">
+              <strong>IBM</strong>
+              <p>AI Fundamentals (SkillsBuild)</p>
+            </div>
+            <div class="cert-item">
+              <strong>GitHub</strong>
+              <p>Prompt Engineering (Copilot)</p>
+            </div>
+            <div class="cert-item">
+              <strong>TCS</strong>
+              <p>MasterCraft DataPlus Overview</p>
+            </div>
+            <div class="cert-item">
+              <strong>Coursera</strong>
+              <p>Tableau Data Visualization</p>
+            </div>
           </div>
-        </article>
-        <article class="achievement-card panel">
-          <span class="achievement-icon" aria-hidden="true">🏅</span>
-          <div>
-            <strong class="achievement-title">State-Level Chess Participant</strong>
-            <p class="achievement-sub">State Chess Champion — Haryana</p>
-          </div>
-        </article>
-        <article class="achievement-card panel">
-          <span class="achievement-icon" aria-hidden="true">🌐</span>
-          <div>
-            <strong class="achievement-title">National-Level Chess Participant</strong>
-            <p class="achievement-sub">Competed at national chess tournament</p>
-          </div>
-        </article>
-        <article class="achievement-card panel">
-          <span class="achievement-icon" aria-hidden="true">🥋</span>
-          <div>
-            <strong class="achievement-title">Karate Open Championship Medalist</strong>
-            <p class="achievement-sub">1st Kudo Karate Open Championship</p>
-          </div>
-        </article>
-        <article class="achievement-card panel">
-          <span class="achievement-icon" aria-hidden="true">🏆</span>
-          <div>
-            <strong class="achievement-title">Class Topper — Classes 7 to 9 &amp; 11</strong>
-            <p class="achievement-sub">Consistent academic top performer</p>
-          </div>
-        </article>
-        <article class="achievement-card panel">
-          <span class="achievement-icon" aria-hidden="true">🎖️</span>
-          <div>
-            <strong class="achievement-title">Sportsmanship Spirit Award</strong>
-            <p class="achievement-sub">Recipient — Euro Group</p>
-          </div>
-        </article>
-        <article class="achievement-card panel">
-          <span class="achievement-icon" aria-hidden="true">📜</span>
-          <div>
-            <strong class="achievement-title">Felicitated by Income Tax Dept</strong>
-            <p class="achievement-sub">Recognition — Income Tax Department, Bhiwadi</p>
-          </div>
-        </article>
-        <article class="achievement-card panel">
-          <span class="achievement-icon" aria-hidden="true">🧠</span>
-          <div>
-            <strong class="achievement-title">GK Olympiad Medalist</strong>
-            <p class="achievement-sub">School-level General Knowledge competition</p>
-          </div>
-        </article>
-        <article class="achievement-card panel">
-          <span class="achievement-icon" aria-hidden="true">🎓</span>
-          <div>
-            <strong class="achievement-title">All-Rounder — B.Tech &amp; School</strong>
-            <p class="achievement-sub">Recognised as all-rounder throughout academics</p>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section id="certifications" class="info wrapper reveal">
-      <div class="section-head">
-        <p class="section-kicker">Credentials</p>
-        <h2>Certifications</h2>
-      </div>
-      <div class="certs-grid">
-        <article class="cert-card panel">
-          <span class="cert-issuer">Google Cloud</span>
-          <span class="cert-icon" aria-hidden="true">🤖</span>
-          <h3 class="cert-name">Generative AI</h3>
-          <p class="cert-desc">Foundations of generative models, prompting, and AI tooling.</p>
-        </article>
-        <article class="cert-card panel">
-          <span class="cert-issuer">Cisco</span>
-          <span class="cert-icon" aria-hidden="true">🔒</span>
-          <h3 class="cert-name">Introduction to Cybersecurity</h3>
-          <p class="cert-desc">Core concepts of network security, threats, and mitigation.</p>
-        </article>
-        <article class="cert-card panel">
-          <span class="cert-issuer">IBM / SkillsBuild</span>
-          <span class="cert-icon" aria-hidden="true">🧠</span>
-          <h3 class="cert-name">AI Fundamentals</h3>
-          <p class="cert-desc">Machine learning, deep learning, and AI application basics.</p>
-        </article>
-        <article class="cert-card panel">
-          <span class="cert-issuer">GitHub Copilot</span>
-          <span class="cert-icon" aria-hidden="true">✍️</span>
-          <h3 class="cert-name">Prompt Engineering</h3>
-          <p class="cert-desc">Effective prompting strategies for large language models using GitHub Copilot.</p>
-        </article>
-        <article class="cert-card panel">
-          <span class="cert-issuer">Netflix / Oblivion</span>
-          <span class="cert-icon" aria-hidden="true">🎬</span>
-          <h3 class="cert-name">Video Editing Workshop</h3>
-          <p class="cert-desc">Oblivion 2025 — professional video editing techniques and production.</p>
-        </article>
-        <article class="cert-card panel">
-          <span class="cert-issuer">Coursera / Tableau</span>
-          <span class="cert-icon" aria-hidden="true">📊</span>
-          <h3 class="cert-name">Data Visualization with Tableau</h3>
-          <p class="cert-desc">Dashboard design, data storytelling, and visual analytics with Tableau.</p>
-        </article>
-        <article class="cert-card panel">
-          <span class="cert-issuer">TCS</span>
-          <span class="cert-icon" aria-hidden="true">🏢</span>
-          <h3 class="cert-name">TCS MasterCraft DataPlus Overview</h3>
-          <p class="cert-desc">Enterprise data management and data integration platform fundamentals.</p>
-        </article>
-        <article class="cert-card panel">
-          <span class="cert-issuer">Beginner Course</span>
-          <span class="cert-icon" aria-hidden="true">🐍</span>
-          <h3 class="cert-name">Python for Beginners</h3>
-          <p class="cert-desc">Python programming fundamentals — variables, loops, functions, and OOP.</p>
-        </article>
+        </div>
       </div>
     </section>
 
@@ -659,13 +549,13 @@
       <div class="footer-brand">
         <p class="footer-name">Vivek</p>
         <p class="footer-tagline">Crafting interfaces, solving problems, building for the web.</p>
-        <p class="footer-mark">© 2025 Vivek · Built with HTML, CSS &amp; JS</p>
+        <p class="footer-mark">© 2026 Vivek · Built with HTML, CSS &amp; JS</p>
       </div>
       <nav class="footer-links" aria-label="Footer links">
         <a href="#home">Home</a>
         <a href="#projects">Projects</a>
         <a href="#skills">Skills</a>
-        <a href="#certifications">Certifications</a>
+        <a href="#recognition">Certifications</a>
         <a href="#profiles">Contact</a>
         <a href="https://github.com/vivekyadavoffline" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
         <a href="https://www.linkedin.com/in/vivekyadavoffline" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
@@ -689,6 +579,30 @@
       <span>Let's Talk</span>
     </button>
   </div>
+
+  <!-- Custom Pro Cursor -->
+  <div class="custom-cursor" id="custom-cursor"></div>
+  <div class="custom-cursor-follower" id="custom-cursor-follower"></div>
+
+  <!-- Mobile Bottom Navigation -->
+  <nav class="mobile-nav" aria-label="Mobile navigation">
+    <a href="#home" class="mobile-nav__link active" aria-label="Home">
+      <svg viewBox="0 0 24 24" width="24" height="24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+      <span>Home</span>
+    </a>
+    <a href="#skills" class="mobile-nav__link" aria-label="Skills">
+      <svg viewBox="0 0 24 24" width="24" height="24"><path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.5 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/></svg>
+      <span>Skills</span>
+    </a>
+    <a href="#projects" class="mobile-nav__link" aria-label="Work">
+      <svg viewBox="0 0 24 24" width="24" height="24"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></svg>
+      <span>Work</span>
+    </a>
+    <a href="#profiles" class="mobile-nav__link" aria-label="Connect">
+      <svg viewBox="0 0 24 24" width="24" height="24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      <span>Connect</span>
+    </a>
+  </nav>
 
   <script src="script.js"></script>
 </body>
