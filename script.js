@@ -1,4 +1,4 @@
-const revealElements = document.querySelectorAll('.reveal');
+    const revealElements = document.querySelectorAll('.reveal');
 const sectionElements = document.querySelectorAll('main section[id]');
 const navLinks = document.querySelectorAll('.nav-link');
 const navTabs = document.querySelector('.nav-tabs');
