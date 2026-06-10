@@ -61,10 +61,10 @@
   <header class="topbar wrapper" id="top">
     <p class="brand">Vivek</p>
     <div class="mobile-utils">
-      <button id="mobile-person-btn" aria-label="Personalize view">
+      <button class="mobile-utils__btn mobile-utils__btn--person" id="mobile-person-btn" type="button" aria-label="Personalize view" aria-haspopup="dialog" aria-controls="audience-gate">
         <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
       </button>
-      <button id="mobile-theme-btn" aria-label="Toggle theme">
+      <button class="mobile-utils__btn mobile-utils__btn--theme" id="mobile-theme-btn" type="button" aria-label="Toggle theme" aria-live="polite">
         <svg viewBox="0 0 24 24" width="18" height="18" class="sun-icon"><path d="M12 7a5 5 0 100 10 5 5 0 000-10zM2 13h2a1 1 0 100-2H2a1 1 0 100 2zm18 0h2a1 1 0 100-2h-2a1 1 0 100 2zM11 2v2a1 1 0 102 0V2a1 1 0 10-2 0zm0 18v2a1 1 0 102 0v-2a1 1 0 10-2 0zM5.99 4.58a1 1 0 10-1.41 1.41l1.41 1.41a1 1 0 101.41-1.41L5.99 4.58zm12.02 12.02a1 1 0 10-1.41 1.41l1.41 1.41a1 1 0 101.41-1.41l-1.41-1.41zm-12.02 0l-1.41 1.41a1 1 0 101.41 1.41l1.41-1.41a1 1 0 10-1.41-1.41zm12.02-12.02l1.41-1.41a1 1 0 10-1.41-1.41l-1.41 1.41a1 1 0 101.41 1.41z"/></svg>
       </button>
     </div>
@@ -94,6 +94,7 @@
         <span class="nav-slider" id="nav-slider" aria-hidden="true"></span>
         <a class="nav-link active" href="#home">Home</a>
         <a class="nav-link" href="#skills">Skills</a>
+        <a class="nav-link" href="#experience">Experience</a>
         <a class="nav-link" href="#projects">Work</a>
         <a class="nav-link" href="#about">About</a>
         <a class="nav-link" href="#recognition">Recognition</a>
@@ -262,7 +263,7 @@
         <article class="info-card panel">
           <div class="card-eyebrow">Academic</div>
           <h3>B.Tech in CSE</h3>
-          <p>VIPS-TC | GGSIPU (2023 - 2027)</p>
+          <p>VIPS-TC | GGSIPU (2024 - 2028)</p>
           <p><strong>Current CGPA: 8.57</strong></p>
           <div class="journey-stats">
             <span>Sem 1: 8.48</span>
@@ -278,6 +279,20 @@
           <p><strong>Class XII: 92.6%</strong></p>
           <p><strong>Class X: 89%</strong></p>
           <p style="font-size: 0.85em; opacity: 0.8;">Recipient of Euro Sportsmanship Award</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="experience" class="roadmap wrapper reveal">
+      <div class="section-head">
+        <p class="section-kicker">Experience</p>
+        <h2>Professional Experience</h2>
+      </div>
+      <div class="timeline experience-timeline">
+        <article class="timeline-item panel">
+          <p class="card-eyebrow">June 2026</p>
+          <h3>Web Development Intern at InAmigos</h3>
+          <p>Worked on web development projects and gained hands-on experience with real-world applications.</p>
         </article>
       </div>
     </section>
@@ -554,16 +569,17 @@
       <div class="footer-brand">
         <p class="footer-name">Vivek</p>
         <p class="footer-tagline">Crafting interfaces, solving problems, building for the web.</p>
-        <p class="footer-mark">© 2026 Vivek · Built with HTML, CSS &amp; JS</p>
+        <p class="footer-mark">&copy; 2026 Vivek &middot; Built with HTML, CSS &amp; JS</p>
       </div>
       <nav class="footer-links" aria-label="Footer links">
         <a href="#home">Home</a>
         <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
         <a href="#skills">Skills</a>
         <a href="#recognition">Certifications</a>
         <a href="#profiles">Contact</a>
-        <a href="https://github.com/vivekyadavoffline" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-        <a href="https://www.linkedin.com/in/vivekyadavoffline" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+        <a href="https://github.com/vivekyadavoffline" target="_blank" rel="noopener noreferrer">GitHub &nearr;</a>
+        <a href="https://www.linkedin.com/in/vivekyadavoffline" target="_blank" rel="noopener noreferrer">LinkedIn &nearr;</a>
       </nav>
     </div>
   </footer>
@@ -574,7 +590,7 @@
     <button class="floating-cta__btn modal-trigger" type="button"
       data-social-title="WhatsApp"
       data-social-handle="+91 80589 84580"
-      data-social-description="Fastest way to reach me — tap to open a chat."
+      data-social-description="Fastest way to reach me - tap to open a chat."
       data-social-url="https://wa.me/918058984580"
       data-social-action="Open WhatsApp"
       aria-label="Contact via WhatsApp">

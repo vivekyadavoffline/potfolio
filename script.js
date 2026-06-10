@@ -51,6 +51,12 @@ const audienceKey = 'portfolio-audience';
 const ageKey = 'portfolio-age-range';
 const supportedThemes = ['dark', 'neon', 'light', 'liquid'];
 const soundKey = 'portfolio-sound';
+const themeLabels = {
+  dark: 'Dark theme',
+  neon: 'Neon theme',
+  light: 'Light theme',
+  liquid: 'Liquid theme',
+};
 let soundEnabled = true;
 let audioContext = null;
 let lastHoverSoundAt = 0;
@@ -438,6 +444,17 @@ const applyTheme = (theme, persist = true) => {
   themeButtons.forEach((button) => {
     button.classList.toggle('is-active', button.dataset.themeBtn === theme);
   });
+  if (mobileThemeBtn) {
+    mobileThemeBtn.dataset.activeTheme = theme;
+    mobileThemeBtn.setAttribute('aria-label', `Toggle theme. Current: ${themeLabels[theme] || theme}`);
+    mobileThemeBtn.classList.remove('is-animating');
+    requestAnimationFrame(() => {
+      mobileThemeBtn.classList.add('is-animating');
+      window.setTimeout(() => {
+        mobileThemeBtn.classList.remove('is-animating');
+      }, 520);
+    });
+  }
 
   if (persist) {
     try {
@@ -464,10 +481,17 @@ if (mobileThemeBtn) {
 const mobilePersonBtn = document.querySelector('#mobile-person-btn');
 if (mobilePersonBtn) {
   mobilePersonBtn.addEventListener('click', () => {
-    if (audienceGate) {
-      audienceGate.classList.add('is-visible');
-      playUiSound('menu-open');
-    }
+    mobilePersonBtn.classList.remove('is-animating');
+    requestAnimationFrame(() => {
+      mobilePersonBtn.classList.add('is-animating');
+      window.setTimeout(() => {
+        mobilePersonBtn.classList.remove('is-animating');
+      }, 520);
+    });
+    markSelectedAgeChip(savedAgeRange || '');
+    refreshAudienceChoiceState();
+    openAudienceGate();
+    playUiSound('menu-open');
   });
 }
 
