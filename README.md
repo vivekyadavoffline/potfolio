@@ -4,7 +4,7 @@
 
 Built with pure **HTML, CSS, and JavaScript** — no frameworks, no build tools. Every interaction, animation, and theme is hand-crafted.
 
-🔗 **Live:** [vivekyadavoffline.github.io](https://vivekyadavoffline.github.io/)
+🔗 **Live:** [vivekyadavoffline.github.io/potfolio](https://vivekyadavoffline.github.io/potfolio/)
 
 ---
 
